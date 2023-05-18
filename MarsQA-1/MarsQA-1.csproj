@@ -151,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Feature\Login.cs" />
+    <Compile Include="SpecflowPages\Pages\ProfilePage.cs" />
+    <Compile Include="StepDefinitions\ProfileDetailsStepDefinitions.cs" />
     <Compile Include="SpecflowPages\Helpers\CommonMethods.cs" />
     <Compile Include="SpecflowPages\Helpers\ConstantHelpers.cs" />
     <Compile Include="SpecflowPages\Helpers\Driver.cs" />

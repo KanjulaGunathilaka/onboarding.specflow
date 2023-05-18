@@ -22,7 +22,7 @@ namespace MarsQA_1.Utils
             Initialize();
             ExcelLibHelper.PopulateInCollection(@"C:\AAAindustryConnect\internship\onboarding.specflow\MarsQA-1\SpecflowTests\Data\Mars.xlsx", "Credentials");
             //call the SignIn class
-            SignIn.SigninStep();
+            //SignIn.SigninStep();
         }
 
         [AfterScenario]
@@ -30,16 +30,16 @@ namespace MarsQA_1.Utils
         {
 
             // Screenshot
-            string img = SaveScreenShotClass.SaveScreenshot(Driver.driver, "Report");
-           test.Log(LogStatus.Info, "Snapshot below: " + test.AddScreenCapture(img));
+           // string img = SaveScreenShotClass.SaveScreenshot(Driver.driver, "Report");
+           //test.Log(LogStatus.Info, "Snapshot below: " + test.AddScreenCapture(img));
             //Close the browser
             Close();
              
             // end test. (Reports)
-            CommonMethods.Extent.EndTest(test);
+            //CommonMethods.Extent.EndTest(test);
             
             // calling Flush writes everything to the log file (Reports)
-            CommonMethods.Extent.Flush();
+            //CommonMethods.Extent.Flush();
            
 
         }

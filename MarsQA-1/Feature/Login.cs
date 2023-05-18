@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarsQA_1.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace MarsQA_1.Feature
     [Binding]
     class Login
     {
-        [Given(@"I login to the website")]
-        public void GivenILoginToTheWebsite()
+        [Given(@"Seller logged in to the website")]
+        public static void GivenSellerLogggedInToTheWebsite()
         {
-            ScenarioContext.Current.Pending();
+            SignIn.SigninStep();
         }
 
     }
