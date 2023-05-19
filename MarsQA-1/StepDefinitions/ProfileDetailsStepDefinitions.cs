@@ -32,21 +32,21 @@ namespace MarsQA_1
         }
 
         [When(@"Seller enter availability details as ""([^""]*)""")]
-        public void WhenSellerEnterAvailabilityDetailsAs(string p0)
+        public void WhenSellerEnterAvailabilityDetailsAs(string availabilityType)
         {
-            throw new PendingStepException();
+            ProfilePage.AvailabilityStep(availabilityType);
         }
 
         [When(@"Seller enter Hours details as ""([^""]*)""")]
-        public void WhenSellerEnterHoursDetailsAs(string p0)
+        public void WhenSellerEnterHoursDetailsAs(string HoursType)
         {
-            throw new PendingStepException();
+            ProfilePage.HoursStep(HoursType);
         }
 
         [When(@"Seller enter Earn Targets as ""([^""]*)""")]
-        public void WhenSellerEnterEarnTargetsAs(string p0)
+        public void WhenSellerEnterEarnTargetsAs(string TargetsType)
         {
-            throw new PendingStepException();
+            ProfilePage.TargetStep(TargetsType);
         }
 
         [Then(@"""([^""]*)"" should be updated succussfully")]
