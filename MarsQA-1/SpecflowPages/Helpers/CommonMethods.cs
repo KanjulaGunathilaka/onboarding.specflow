@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RelevantCodes.ExtentReports;
+using OpenQA.Selenium.Interactions;
 
 
 namespace MarsQA_1.Helpers
@@ -37,6 +38,14 @@ namespace MarsQA_1.Helpers
                 screenShot.SaveAsFile(fileName.ToString(), ScreenshotImageFormat.Jpeg);
                 return fileName.ToString();
             }
+
+        }
+
+        public static void ScrollToElement(IWebDriver driver, IWebElement element)
+        {
+            var actions = new Actions(driver);
+            actions.MoveToElement(element);
+            actions.Perform();
         }
 
         //ExtentReports

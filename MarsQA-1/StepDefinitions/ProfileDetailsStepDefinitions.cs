@@ -1,5 +1,6 @@
 using MarsQA_1.SpecflowPages.Pages;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace MarsQA_1
@@ -7,50 +8,55 @@ namespace MarsQA_1
     [Binding]
     public class ProfileDetailsStepDefinitions
     {
-        [Given(@"Seller navigate to sellers profile page")]
-        public void GivenSellerNavigateToSellersProfilePage()
-        {
-            throw new PendingStepException();
-        }
 
         [When(@"Seller enter ""([^""]*)"" name details")]
         public static void WhenSellerEnterNameDetails(string valid)
         {
             ProfilePage.EnterNameStep();
-        }
-
-        [When(@"Seller save name details")]
-        public void WhenSellerSaveNameDetails()
-        {
             ProfilePage.SaveNameStep();
+            //ProfilePage.VerifyNameStep();
         }
 
-        [Then(@"Name details section should be updated succussfully")]
-        public void ThenNameDetailsSectionShouldBeUpdatedSuccussfully()
-        {
-            ProfilePage.VerifyNameStep();
-        }
-
-        [When(@"Seller enter availability details as ""([^""]*)""")]
-        public void WhenSellerEnterAvailabilityDetailsAs(string availabilityType)
+        [When(@"Seller enter ""([^""]*)"" availability details")]
+        public void WhenSellerEnterAvailabilityDetails(string availabilityType, string hoursType, string targetType)
         {
             ProfilePage.AvailabilityStep(availabilityType);
+            ProfilePage.HoursStep(hoursType);
+            ProfilePage.TargetStep(targetType);
         }
 
-        [When(@"Seller enter Hours details as ""([^""]*)""")]
-        public void WhenSellerEnterHoursDetailsAs(string HoursType)
+        [When(@"Seller enter ""([^""]*)"" description")]
+        public void WhenSellerEnterDescription(string description)
         {
-            ProfilePage.HoursStep(HoursType);
+            ProfilePage.AddDescriptionStep(description);
         }
 
-        [When(@"Seller enter Earn Targets as ""([^""]*)""")]
-        public void WhenSellerEnterEarnTargetsAs(string TargetsType)
+        [When(@"Seller add language details")]
+        public void WhenSellerAddLanguageDetails(string language, string level)
         {
-            ProfilePage.TargetStep(TargetsType);
+            ProfilePage.AddLanguagesStep(language,level);
         }
 
-        [Then(@"""([^""]*)"" should be updated succussfully")]
-        public void ThenShouldBeUpdatedSuccussfully(string p0)
+        [When(@"Seller enter skills details")]
+        public void WhenSellerEnterSkillsDetails(String skill, String level)
+        {
+            ProfilePage.AddSkillsStep(skill,level);
+        }
+
+        [When(@"Seller enter education details")]
+        public void WhenSellerEnterEducationDetails(String education, String country, string title, string degree, string year)
+        {
+            ProfilePage.AddEducationStep( education,  country,  title,  degree,  year);
+        }
+
+        [When(@"Seller enter Certification details")]
+        public void WhenSellerEnterCertificationDetails(String certification, String year, string from)
+        {
+            ProfilePage.AddCertificationStep( certification,  year,  from);
+        }
+
+        [Then(@"Seller able to add profile details successfully")]
+        public void ThenSellerAbleToAddProfileDetailsSuccessfully()
         {
             throw new PendingStepException();
         }
