@@ -1,3 +1,4 @@
+using MarsQA_1.SpecflowPages.Pages;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,19 +10,19 @@ namespace MarsQA_1.StepDefinitions
         [When(@"Seller is navigate to share skill page")]
         public void WhenSellerIsNavigateToShareSkillPage()
         {
-            throw new PendingStepException();
+            SharePage.NavigateStep();
         }
 
         [When(@"Seller enter ""([^""]*)"" Title")]
-        public void WhenSellerEnterTitle(string valid)
+        public void WhenSellerEnterTitle(string title)
         {
-            throw new PendingStepException();
+            SharePage.AddTitleStep(title);
         }
 
         [When(@"Seller enter ""([^""]*)"" Description")]
-        public void WhenSellerEnterDescription(string valid)
+        public void WhenSellerEnterDescription(string description)
         {
-            throw new PendingStepException();
+            SharePage.AddShareDescriptionStep(description);
         }
 
         [When(@"Seller enter tags")]
