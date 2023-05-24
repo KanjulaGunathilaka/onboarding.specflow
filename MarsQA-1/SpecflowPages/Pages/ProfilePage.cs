@@ -230,7 +230,7 @@ namespace MarsQA_1.SpecflowPages.Pages
 
 
         }
-        public static void AddEducationStep(String education, String country, string title, string degree, string year)
+        public static void AddEducationStep(String university, String country, string title, string degree, string year)
         {
             //Click Education Button
             EducationBtn.Click();
@@ -242,7 +242,7 @@ namespace MarsQA_1.SpecflowPages.Pages
             UniversityTextBox.Click();
 
             //enter Education valuecountr
-            UniversityTextBox.SendKeys(education);
+            UniversityTextBox.SendKeys(university);
 
 
             //Select Country of the University

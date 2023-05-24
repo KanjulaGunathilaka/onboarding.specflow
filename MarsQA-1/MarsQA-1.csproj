@@ -166,6 +166,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Feature\ProfileDetails.feature" />
+    <None Include="Resources\worksample.pdf" />
     <None Include="SpecflowTests\Data\Data.xlsx" />
     <None Include="packages.config" />
     <None Include="SpecflowTests\Data\Mars.xlsx" />

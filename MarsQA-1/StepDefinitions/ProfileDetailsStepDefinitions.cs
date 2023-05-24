@@ -17,7 +17,7 @@ namespace MarsQA_1
             //ProfilePage.VerifyNameStep();
         }
 
-        [When(@"Seller enter ""([^""]*)"" availability details")]
+        [When(@"Seller enter availability details as ""([^""]*)"" and ""([^""]*)"" and ""([^""]*)""")]
         public void WhenSellerEnterAvailabilityDetails(string availabilityType, string hoursType, string targetType)
         {
             ProfilePage.AvailabilityStep(availabilityType);
@@ -31,25 +31,26 @@ namespace MarsQA_1
             ProfilePage.AddDescriptionStep(description);
         }
 
-        [When(@"Seller add language details")]
+        [When(@"Seller add ""([^""]*)"" and ""([^""]*)"" as language details")]
         public void WhenSellerAddLanguageDetails(string language, string level)
         {
             ProfilePage.AddLanguagesStep(language,level);
         }
-
-        [When(@"Seller enter skills details")]
+       
+        [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as skills details")]
         public void WhenSellerEnterSkillsDetails(String skill, String level)
         {
             ProfilePage.AddSkillsStep(skill,level);
         }
 
-        [When(@"Seller enter education details")]
-        public void WhenSellerEnterEducationDetails(String education, String country, string title, string degree, string year)
+        [When(@"Seller enter ""([^""]*)"",""([^""]*)"",""([^""]*)"", ""([^""]*)"" and ""([^""]*)"" as education details")]
+        public void WhenSellerEnterAndAsEducationDetails(String university, String country, string title, string degree, string year)
         {
-            ProfilePage.AddEducationStep( education,  country,  title,  degree,  year);
+            ProfilePage.AddEducationStep(university,country, title, degree,year);
         }
 
-        [When(@"Seller enter Certification details")]
+
+        [When(@"Seller enter ""([^""]*)"" , ""([^""]*)""  and ""([^""]*)"" as Certification details")]
         public void WhenSellerEnterCertificationDetails(String certification, String year, string from)
         {
             ProfilePage.AddCertificationStep( certification,  year,  from);
