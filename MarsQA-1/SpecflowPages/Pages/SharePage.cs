@@ -18,6 +18,9 @@ namespace MarsQA_1.SpecflowPages.Pages
         private static IWebElement categoryDropdownBtn => Driver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[3]/div[2]/div/div/select"));
 
         private static SelectElement categoryDropdown = new SelectElement(Driver.driver.FindElement(By.ClassName("category")));
+        private static IWebElement subCategoryDropdownBtn => Driver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/div[2]/div[1]/div[2]/div[1]/select[1]"));
+
+        private static SelectElement subCategoryDropdown = new SelectElement(Driver.driver.FindElement(By.ClassName("subcategory")));
         private static IWebElement tagsTextBox => Driver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[4]/div[2]/div/div/div/div/input"));
 
         private static IWebElement serviceHourlyRadioBtn => Driver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input"));
@@ -38,6 +41,9 @@ namespace MarsQA_1.SpecflowPages.Pages
         private static IWebElement startDateTextBox => Driver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[1]/div[2]/input[1]"));
         private static IWebElement endDateTextBox => Driver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[1]/div[4]/input[1]"));
         private static IWebElement saveBtn => Driver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[11]/div[1]/input[1]"));
+        
+
+
         public static void NavigateStep()
         {
             shareSkillBtn.Click();
@@ -63,23 +69,32 @@ namespace MarsQA_1.SpecflowPages.Pages
             shareDescriptionTextArea.SendKeys(description);
 
         }
-        public static void SelectCategoryStep(String categoryType)
+        public static void SelectCategoryStep(String  business, string presentations)
         {
             //click drop down
             categoryDropdownBtn.Clear();
 
             //select value from dropdown
-            categoryDropdown.SelectByText(categoryType);
+            categoryDropdown.SelectByText(business);
+
+            //click drop down
+            subCategoryDropdownBtn.Clear();
+
+            //select value from dropdown
+            subCategoryDropdown.SelectByText(presentations);
 
         }
-        public static void AddTags(string tags)
+        public static void AddTags(string limitedEdition, string qualityProducts)
         {
             //click and clear text in tags textbox
             tagsTextBox.Click();
             tagsTextBox.Clear();
 
             //enter tags value
-            tagsTextBox.SendKeys(tags);
+            tagsTextBox.SendKeys(limitedEdition);
+            tagsTextBox.SendKeys(Keys.Enter);
+            tagsTextBox.SendKeys(qualityProducts);
+            tagsTextBox.SendKeys(Keys.Enter);
 
         }
         public static void SelectServiceTypeStep(String radioType)
@@ -106,7 +121,7 @@ namespace MarsQA_1.SpecflowPages.Pages
 
         }
 
-        public static void AvailableDays(string days)
+        public static void AvailableDaysstep(string days)
         {
             //click and clear text in start date textbox
             startDateTextBox.Click();
@@ -166,13 +181,17 @@ namespace MarsQA_1.SpecflowPages.Pages
                 hiddenRadioBtn.Click();
 
         }
-        public static void SaveSharePageStep(string tags)
+        public static void SaveSharePageStep()
         {
 
             saveBtn.Click();
         }
 
+        public static void verifystep() 
+        {
+        
 
+        }
 
 
     }    

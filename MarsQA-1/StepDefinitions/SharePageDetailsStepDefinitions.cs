@@ -25,80 +25,81 @@ namespace MarsQA_1.StepDefinitions
             SharePage.AddShareDescriptionStep(description);
         }
 
-        [When(@"Seller select ""([^""]*)"" as category")]
-        public void WhenSellerSelectAsCategory(string business)
+        [When(@"Seller select ""([^""]*)"" as category and ""([^""]*)"" as sub Category")]
+        public void WhenSellerSelectAsCategoryAndAsSubCategory(string business, string presentations)
         {
-            throw new PendingStepException();
+            SharePage.SelectCategoryStep(business, presentations);
         }
+
 
 
         [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as tags")]
         public void WhenSellerEnterAndAsTags(string limitedEdition, string qualityProducts)
         {
-            throw new PendingStepException();
+            SharePage.AddTags(limitedEdition, qualityProducts);
         }
 
 
         [When(@"Seller select ""([^""]*)"" as Service type")]
-        public void WhenSellerSelectAsServiceType(string p0)
+        public void WhenSellerSelectAsServiceType(String radioType)
         {
-            throw new PendingStepException();
+            SharePage.SelectServiceTypeStep(radioType);
         }
 
 
 
 
         [When(@"Seller select ""([^""]*)"" as Location type")]
-        public void WhenSellerSelectAsLocationType(string p0)
+        public void WhenSellerSelectAsLocationType(String locationType)
         {
-            throw new PendingStepException();
+            SharePage.SelectLocationTypeStep( locationType);
         }
 
 
         [When(@"Seller select (.*)/(.*) as available start date and (.*)/(.*) as end date")]
-        public void WhenSellerSelectAsAvailableStartDateAndAsEndDate(Decimal p0, int p1, Decimal p2, int p3)
+        public void WhenSellerSelectAsAvailableStartDateAndAsEndDate(string days)
         {
-            throw new PendingStepException();
+            SharePage.AvailableDaysstep(days);
         }
 
         [When(@"Seller select ""([^""]*)"" ""([^""]*)"" as available start time and (.*) pm as end time")]
         public void WhenSellerSelectAsAvailableStartTimeAndPmAsEndTime(string p0, string p1, Decimal p2)
         {
-            throw new PendingStepException();
+            
         }
 
 
 
         [When(@"Seller choose ""([^""]*)"" as  skill trade")]
-        public void WhenSellerChooseAsSkillTrade(string p0)
+        public void WhenSellerChooseAsSkillTrade(string tradeType)
         {
-            throw new PendingStepException();
+            SharePage.SelectSkillTradeStep(tradeType);
         }
 
         [When(@"Seller add new tags ""([^""]*)"" and ""([^""]*)"" for skill exchange")]
         public void WhenSellerAddNewTagsAndForSkillExchange(string businessExchange, string codingExchange)
         {
-            throw new PendingStepException();
+            
         }
 
 
         [When(@"Seller upload ""([^""]*)"" work samples")]
         public void WhenSellerUploadWorkSamples(string p0)
         {
-        
+            SharePage.UploadSampleWorkStep();
         }
 
         [When(@"Seller select ""([^""]*)"" services")]
         public void WhenSellerSelectServices(string active)
         {
-            throw new PendingStepException();
+            SharePage.ActiveStep(active);
         }
 
 
         [When(@"Seller click save button")]
         public void WhenSellerClickSaveButton()
         {
-            throw new PendingStepException();
+            SharePage.SaveSharePageStep();
         }
 
         [Then(@"Seller is able to save share skill page succussfully")]
