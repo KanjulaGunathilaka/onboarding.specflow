@@ -1,7 +1,8 @@
+using MarsQA.SpecFlowPages.Pages;
 using System;
 using TechTalk.SpecFlow;
 
-namespace MarsQA_1.StepDefinitions
+namespace MarsQA.StepDefinitions
 {
     [Binding]
     public class ManageListingStepDefinitions
@@ -9,19 +10,19 @@ namespace MarsQA_1.StepDefinitions
         [When(@"Seller navigate to manage listing")]
         public void WhenSellerNavigateToManageListing()
         {
-            throw new PendingStepException();
+            ManageListingPage.NavigateStep();
         }
 
         [When(@"listing details visible")]
         public void WhenListingDetailsVisible()
         {
-            throw new PendingStepException();
+            ManageListingPage.VisibleStep();
         }
 
         [When(@"Seller click ""([^""]*)""  on share skill page")]
         public void WhenSellerClickOnShareSkillPage(string p0)
         {
-            throw new PendingStepException();
+            ManageListingPage.ViewProfileDetailsStep();
         }
 
         [Then(@"Seller is able to see the seller’s profile details successfully")]

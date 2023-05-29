@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MarsQA_1.Helpers
+namespace MarsQA.Helpers
 {
     public class ConstantHelpers
     {
         //Base Url
-        public static string Url = "http://localhost:5000";
+        public static string baseUrl = "http://localhost:5000";
 
+        //Base Project Path
+        public static string baseProjectPath = @"C:\AAAindustryConnect\internship\onboarding.specflow\MarsQA-1\";
         //ScreenshotPath
-        public static string ScreenshotPath = "C:\\AAAindustryConnect\\internship\\onboarding.specflow\\MarsQA-1\\TestReports\\Screenshots\\";
-
+        public static string ScreenshotPath = baseProjectPath + @"TestReports\Screenshots\";
         //ExtentReportsPath
-        public static string ReportsPath = "C:\\AAAindustryConnect\\internship\\onboarding.specflow\\MarsQA-1\\TestReports\\Test_files\\";
-
+        public static string ReportsPath = baseProjectPath + @"TestReports\Test_files\";
         //ReportXML Path
-        public static string ReportXMLPath = "C:\\AAAindustryConnect\\internship\\onboarding.specflow\\MarsQA-1\\TestReports\\Test_files\\";
+        public static string ReportXMLPath = baseProjectPath + @"TestReports\Test_files\";
 
         public static string GetRelativeFilePath(string fileName)
         {

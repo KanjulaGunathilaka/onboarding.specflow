@@ -1,18 +1,23 @@
-using MarsQA_1.SpecflowPages.Pages;
+using MarsQA.SpecFlowPages.Pages;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 
-namespace MarsQA_1
+namespace MarsQA
 {
     [Binding]
     public class ProfileDetailsStepDefinitions
     {
 
-        [When(@"Seller enter ""([^""]*)"" name details")]
-        public static void WhenSellerEnterNameDetails(string valid)
+        [When(@"Seller enter name details$")]
+        public static void WhenSellerEnterNameDetails(Table table)
         {
-            ProfilePage.EnterNameStep();
+            foreach (var row in table.Rows)
+            {
+                string firstName = row["FirstName"];
+                string lastName = row["LastName"];
+                ProfilePage.EnterNameStep(firstName, lastName);
+            }
             ProfilePage.SaveNameStep();
             //ProfilePage.VerifyNameStep();
         }
@@ -34,26 +39,26 @@ namespace MarsQA_1
         [When(@"Seller add ""([^""]*)"" and ""([^""]*)"" as language details")]
         public void WhenSellerAddLanguageDetails(string language, string level)
         {
-            ProfilePage.AddLanguagesStep(language,level);
+            ProfilePage.AddLanguagesStep(language, level);
         }
-       
+
         [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as skills details")]
         public void WhenSellerEnterSkillsDetails(String skill, String level)
         {
-            ProfilePage.AddSkillsStep(skill,level);
+            ProfilePage.AddSkillsStep(skill, level);
         }
 
         [When(@"Seller enter ""([^""]*)"",""([^""]*)"",""([^""]*)"", ""([^""]*)"" and ""([^""]*)"" as education details")]
         public void WhenSellerEnterAndAsEducationDetails(String university, String country, string title, string degree, string year)
         {
-            ProfilePage.AddEducationStep(university,country, title, degree,year);
+            ProfilePage.AddEducationStep(university, country, title, degree, year);
         }
 
 
         [When(@"Seller enter ""([^""]*)"" , ""([^""]*)""  and ""([^""]*)"" as Certification details")]
         public void WhenSellerEnterCertificationDetails(String certification, String year, string from)
         {
-            ProfilePage.AddCertificationStep( certification,  year,  from);
+            ProfilePage.AddCertificationStep(certification, year, from);
         }
 
         [Then(@"Seller able to add profile details successfully")]

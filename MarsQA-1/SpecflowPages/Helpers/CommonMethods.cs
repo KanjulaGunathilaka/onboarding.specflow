@@ -9,7 +9,7 @@ using RelevantCodes.ExtentReports;
 using OpenQA.Selenium.Interactions;
 
 
-namespace MarsQA_1.Helpers
+namespace MarsQA.Helpers
 {
     public class CommonMethods
     {

@@ -1,8 +1,8 @@
-using MarsQA_1.SpecflowPages.Pages;
+using MarsQA.SpecFlowPages.Pages;
 using System;
 using TechTalk.SpecFlow;
 
-namespace MarsQA_1.StepDefinitions
+namespace MarsQA.StepDefinitions
 {
     [Binding]
     public class SharePageDetailsStepDefinitions
@@ -56,10 +56,10 @@ namespace MarsQA_1.StepDefinitions
         }
 
 
-        [When(@"Seller select (.*)/(.*) as available start date and (.*)/(.*) as end date")]
-        public void WhenSellerSelectAsAvailableStartDateAndAsEndDate(string days)
+        [When(@"Seller select ""([^""]*)"" as start date and ""([^""]*)"" as end date")]
+        public void WhenSellerSelectAsAvailableStartDateAndAsEndDate(string startDate, string endDate)
         {
-            SharePage.AvailableDaysstep(days);
+            SharePage.AvailableDaysstep(startDate);
         }
 
         [When(@"Seller select ""([^""]*)"" ""([^""]*)"" as available start time and (.*) pm as end time")]
