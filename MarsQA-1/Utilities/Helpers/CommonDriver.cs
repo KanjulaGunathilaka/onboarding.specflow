@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using MarsQA.Utils;
+using NLog;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using WebDriverManager;
@@ -9,7 +11,7 @@ namespace MarsQA.Helpers
     public class CommonDriver
     {
         public static IWebDriver webDriver { get; set; }
-
+        private static readonly Logger Logger = LoggerManager.Logger;
         public static void Initialize()
         {
             new DriverManager().SetUpDriver(new ChromeConfig());
@@ -37,7 +39,7 @@ namespace MarsQA.Helpers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while closing the driver: {ex.Message}");
+                Logger.Info($"An error occurred while closing the driver: {ex.Message}");
             }
             finally
             {

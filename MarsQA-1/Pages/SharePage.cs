@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace MarsQA.SpecFlowPages.Pages
+namespace MarsQA.Pages
 {
     [Binding]
     public class SharePage

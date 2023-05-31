@@ -1,24 +1,22 @@
 ﻿using ExcelDataReader;
+using MarsQA.Utils;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarsQA.Helpers
 {
     class ExcelLibHelper
     {
-     #region Excel Read Data
+        #region Excel Read Data
 
-
-    private static readonly List<Datacollection> DataCol = new List<Datacollection>();
-
+        private static readonly List<Datacollection> DataCol = new List<Datacollection>();
+        private static readonly Logger Logger = LoggerManager.Logger;
         // The following code helps to quit the windows in which you only need to pass the name of excel.
-
 
         // ReSharper disable once UnusedMember.Local
         private static void QuitExcel(string processtitle)
@@ -36,7 +34,6 @@ namespace MarsQA.Helpers
         {
             DataCol.Clear();
         }
-
 
         private static DataTable ExcelToDataTable(string fileName, string sheetName)
         {
@@ -62,8 +59,6 @@ namespace MarsQA.Helpers
             }
         }
 
-
-
         public static string ReadData(int rowNumber, string columnName)
         {
             try
@@ -81,12 +76,11 @@ namespace MarsQA.Helpers
             catch (Exception e)
             {
                 // ReSharper disable once LocalizableElement
-                Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine +
+                Logger.Info("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine +
                                   e.Message);
                 return null;
             }
         }
-
 
         public static void PopulateInCollection(string fileName, string sheetName)
         {

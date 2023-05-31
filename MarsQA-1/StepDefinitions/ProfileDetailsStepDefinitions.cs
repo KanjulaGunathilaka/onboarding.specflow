@@ -1,8 +1,6 @@
-using MarsQA.Pages;
 using MarsQA.SpecFlowPages.Pages;
 using OpenQA.Selenium;
 using System;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace MarsQA

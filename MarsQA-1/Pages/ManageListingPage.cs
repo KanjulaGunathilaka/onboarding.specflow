@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace MarsQA.SpecFlowPages.Pages
+namespace MarsQA.Pages
 {
     [Binding]
     public class ManageListingPage : CommonDriver

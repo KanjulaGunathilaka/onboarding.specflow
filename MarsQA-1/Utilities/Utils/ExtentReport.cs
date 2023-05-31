@@ -2,25 +2,22 @@
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
 using MarsQA.Helpers;
-using OpenQA.Selenium;
 using System;
 using System.IO;
-using TechTalk.SpecFlow;
 
 namespace MarsQA.Utils
 {
-    public class ExtentReport
+    public class ExtentReportManager
     {
         public static ExtentReports _extentReports;
         public static ExtentTest _feature;
         public static ExtentTest _scenario;
 
-        public static String dir = AppDomain.CurrentDomain.BaseDirectory;
         public static String testResultPath = ConstantHelpers.ReportsPath;
 
         public static void ExtentReportInit()
         {
-            var htmlReporter = new ExtentHtmlReporter(testResultPath + "AutomationStatusReport.html");
+            var htmlReporter = new ExtentHtmlReporter(Path.Combine(testResultPath, "AutomationStatusReport.html"));
             htmlReporter.Config.ReportName = "Automation Status Report";
             htmlReporter.Config.DocumentTitle = "Automation Status Report";
             htmlReporter.Config.Theme = Theme.Standard;
@@ -52,16 +49,5 @@ namespace MarsQA.Utils
         {
             _extentReports.Flush();
         }
-
-        public string addScreenshot(IWebDriver driver, ScenarioContext scenarioContext)
-        {
-            ITakesScreenshot takesScreenshot = (ITakesScreenshot)driver;
-            Screenshot screenshot = takesScreenshot.GetScreenshot();
-            string screenshotLocation = Path.Combine(testResultPath, scenarioContext.ScenarioInfo.Title + ".png");
-            screenshot.SaveAsFile(screenshotLocation, ScreenshotImageFormat.Png);
-            return screenshotLocation;
-        }
-
-
     }
 }

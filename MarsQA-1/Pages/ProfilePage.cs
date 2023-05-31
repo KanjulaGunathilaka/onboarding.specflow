@@ -1,12 +1,11 @@
 ﻿using MarsQA.Helpers;
-using MarsQA.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
 
-namespace MarsQA.SpecFlowPages.Pages
+namespace MarsQA.Pages
 {
     [Binding]
     public class ProfilePage : CommonMethods
@@ -116,8 +115,6 @@ namespace MarsQA.SpecFlowPages.Pages
 
         public void EnterNameStep(string firstName, string lastName)
         {
-            //Wait.WaitForElementDisplayed(driver, nameExpandBtn, 10);
-            //ScrollToElement(driver, nameExpandBtn);
             nameExpandBtn.Click();
             ScrollToElement(driver, firstNameTextBox);
             SetField(firstNameTextBox, firstName);
