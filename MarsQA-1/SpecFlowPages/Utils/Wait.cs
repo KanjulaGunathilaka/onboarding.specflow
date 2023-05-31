@@ -26,6 +26,12 @@ namespace MarsQA.Utils
             return wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
+        public static void WaitForElementDisplayed(IWebDriver driver, IWebElement locator, int timeoutInSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+            wait.Until(ExpectedConditions.ElementIsVisible((By)locator));
+        }
+
         private static By GetLocator(string locatorType, string locatorValue)
         {
             switch (locatorType.ToLower())

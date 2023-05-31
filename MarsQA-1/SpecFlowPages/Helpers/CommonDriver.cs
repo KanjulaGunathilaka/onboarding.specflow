@@ -8,31 +8,32 @@ namespace MarsQA.Helpers
 {
     public class CommonDriver
     {
-        public static IWebDriver driver { get; set; }
+        public static IWebDriver webDriver { get; set; }
 
         public static void Initialize()
         {
             new DriverManager().SetUpDriver(new ChromeConfig());
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--start-maximized");
-            driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            webDriver = new ChromeDriver(options);
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
         public static string BaseUrl => ConstantHelpers.baseUrl;
 
-        public static IWebDriver Instance => driver;
+        public static IWebDriver Instance => webDriver;
 
         public static void NavigateToUrl()
         {
-            driver.Navigate().GoToUrl(BaseUrl);
+            webDriver.Navigate().GoToUrl(BaseUrl);
         }
 
         public static void CloseDriver()
         {
             try
             {
-                driver?.Quit();
+                webDriver?.Quit();
+                webDriver.Dispose();
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace MarsQA.Helpers
             }
             finally
             {
-                driver = null;
+                webDriver = null;
             }
         }
 

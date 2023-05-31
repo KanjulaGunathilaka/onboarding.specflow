@@ -13,21 +13,27 @@ namespace MarsQA.SpecFlowPages.Pages
     [Binding]
     public class ManageListingPage : CommonDriver
     {
-        private static IWebElement manageListingBtn => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/section[1]/div/a[3]"));
-        private static IWebElement categoryTextBox => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[2]"));
-        private static IWebElement titleTextBox => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[3]"));
-        private static IWebElement descriptionTextBox => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[4]"));
-        private static IWebElement serviceTypeOption => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[5]"));
-        private static IWebElement skillTradeOption => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[6]"));
-        private static IWebElement activeOption => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[7]/div/input"));
-        private static IWebElement viewBtn => driver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[8]/div/button[1]/i"));
+        private IWebDriver driver;
+        public ManageListingPage(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
 
-        public static void NavigateStep()
+        private static IWebElement manageListingBtn => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/section[1]/div/a[3]"));
+        private static IWebElement categoryTextBox => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[2]"));
+        private static IWebElement titleTextBox => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[3]"));
+        private static IWebElement descriptionTextBox => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[4]"));
+        private static IWebElement serviceTypeOption => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[5]"));
+        private static IWebElement skillTradeOption => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[6]"));
+        private static IWebElement activeOption => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[7]/div/input"));
+        private static IWebElement viewBtn => webDriver.FindElement(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr/td[8]/div/button[1]/i"));
+
+        public void NavigateStep()
         {
             manageListingBtn.Click();
         }
 
-        public static void VisibleStep()
+        public void VisibleStep()
         {
 
             {
@@ -42,7 +48,7 @@ namespace MarsQA.SpecFlowPages.Pages
 
         }
 
-        public static void ViewProfileDetailsStep()
+        public void ViewProfileDetailsStep()
         {
             viewBtn.Click();
         }

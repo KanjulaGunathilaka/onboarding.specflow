@@ -12,46 +12,52 @@ using System.Threading.Tasks;
 namespace MarsQA.SpecFlowPages.Pages
 {
     [Binding]
-    public static class SharePage
+    public class SharePage
     {
-        private static IWebElement shareSkillBtn => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[1]/div/div[2]/a"));
-        private static IWebElement titleTextArea => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[1]/div/div[2]/div/div[1]/input"));
-        private static IWebElement shareDescriptionTextArea => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[2]/div/div[2]/div[1]/textarea"));
-        private static IWebElement categoryDropdownBtn => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[3]/div[2]/div/div/select"));
+        private IWebDriver driver;
+        public SharePage(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
 
-        private static SelectElement categoryDropdown = new SelectElement(CommonDriver.driver.FindElement(By.ClassName("category")));
-        private static IWebElement subCategoryDropdownBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/div[2]/div[1]/div[2]/div[1]/select[1]"));
+        private static IWebElement shareSkillBtn => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[1]/div/div[2]/a"));
+        private static IWebElement titleTextArea => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[1]/div/div[2]/div/div[1]/input"));
+        private static IWebElement shareDescriptionTextArea => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[2]/div/div[2]/div[1]/textarea"));
+        private static IWebElement categoryDropdownBtn => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[3]/div[2]/div/div/select"));
 
-        private static SelectElement subCategoryDropdown = new SelectElement(CommonDriver.driver.FindElement(By.ClassName("subcategory")));
-        private static IWebElement tagsTextBox => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[4]/div[2]/div/div/div/div/input"));
+        private static SelectElement categoryDropdown = new SelectElement(CommonDriver.webDriver.FindElement(By.ClassName("category")));
+        private static IWebElement subCategoryDropdownBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/div[2]/div[1]/div[2]/div[1]/select[1]"));
 
-        private static IWebElement serviceHourlyRadioBtn => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input"));
-        private static IWebElement serviceOneOffRadioBtn => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input"));
-        private static IWebElement locationOnSiteRadioBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[6]/div[2]/div[1]/div[1]/div[1]/input[1]"));
-        private static IWebElement locationOnlineRadioBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[6]/div[2]/div[1]/div[2]/div[1]/input[1]"));
+        private static SelectElement subCategoryDropdown = new SelectElement(CommonDriver.webDriver.FindElement(By.ClassName("subcategory")));
+        private static IWebElement tagsTextBox => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[4]/div[2]/div/div/div/div/input"));
 
-        private static IWebElement skillExchangeRadioBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[8]/div[2]/div[1]/div[1]/div[1]/input[1]"));
-        private static IWebElement creditRadioBtn => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[6]/div[2]/div/div[2]/div/input"));
-        private static IWebElement skilltagsTextBox => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input"));
-        private static IWebElement creditTextBox => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[6]/div[2]/div/div[2]/div/input"));
+        private static IWebElement serviceHourlyRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input"));
+        private static IWebElement serviceOneOffRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input"));
+        private static IWebElement locationOnSiteRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[6]/div[2]/div[1]/div[1]/div[1]/input[1]"));
+        private static IWebElement locationOnlineRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[6]/div[2]/div[1]/div[2]/div[1]/input[1]"));
 
-        private static IWebElement uploadBtn => CommonDriver.driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[9]/div/div[2]/section/div/label/div/span/i"));
+        private static IWebElement skillExchangeRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[8]/div[2]/div[1]/div[1]/div[1]/input[1]"));
+        private static IWebElement creditRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[6]/div[2]/div/div[2]/div/input"));
+        private static IWebElement skilltagsTextBox => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input"));
+        private static IWebElement creditTextBox => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[6]/div[2]/div/div[2]/div/input"));
 
-        private static IWebElement activeRadioBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[10]/div[2]/div[1]/div[1]/div[1]/input[1]"));
-        private static IWebElement hiddenRadioBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[10]/div[2]/div[1]/div[2]/div[1]/input[1]"));
+        private static IWebElement uploadBtn => CommonDriver.webDriver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[9]/div/div[2]/section/div/label/div/span/i"));
 
-        private static IWebElement startDateTextBox => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[1]/div[2]/input[1]"));
-        private static IWebElement endDateTextBox => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[1]/div[4]/input[1]"));
-        private static IWebElement saveBtn => CommonDriver.driver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[11]/div[1]/input[1]"));
+        private static IWebElement activeRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[10]/div[2]/div[1]/div[1]/div[1]/input[1]"));
+        private static IWebElement hiddenRadioBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[10]/div[2]/div[1]/div[2]/div[1]/input[1]"));
+
+        private static IWebElement startDateTextBox => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[1]/div[2]/input[1]"));
+        private static IWebElement endDateTextBox => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[1]/div[4]/input[1]"));
+        private static IWebElement saveBtn => CommonDriver.webDriver.FindElement(By.XPath("//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[11]/div[1]/input[1]"));
 
 
 
-        public static void NavigateStep()
+        public void NavigateStep()
         {
             shareSkillBtn.Click();
         }
 
-        public static void AddTitleStep(string title)
+        public void AddTitleStep(string title)
         {
             //click and clear text in title textbox
             titleTextArea.Click();
@@ -61,7 +67,7 @@ namespace MarsQA.SpecFlowPages.Pages
             titleTextArea.SendKeys(title);
         }
 
-        public static void AddShareDescriptionStep(string description)
+        public void AddShareDescriptionStep(string description)
         {
             //click and clear text in title textbox
             shareDescriptionTextArea.Click();
@@ -71,7 +77,7 @@ namespace MarsQA.SpecFlowPages.Pages
             shareDescriptionTextArea.SendKeys(description);
 
         }
-        public static void SelectCategoryStep(String business, string presentations)
+        public void SelectCategoryStep(String business, string presentations)
         {
             //click drop down
             categoryDropdownBtn.Clear();
@@ -86,7 +92,7 @@ namespace MarsQA.SpecFlowPages.Pages
             subCategoryDropdown.SelectByText(presentations);
 
         }
-        public static void AddTags(string limitedEdition, string qualityProducts)
+        public void AddTags(string limitedEdition, string qualityProducts)
         {
             //click and clear text in tags textbox
             tagsTextBox.Click();
@@ -99,7 +105,7 @@ namespace MarsQA.SpecFlowPages.Pages
             tagsTextBox.SendKeys(Keys.Enter);
 
         }
-        public static void SelectServiceTypeStep(String radioType)
+        public void SelectServiceTypeStep(String radioType)
         {
             if (radioType == "Hourly basis")
             {
@@ -111,7 +117,7 @@ namespace MarsQA.SpecFlowPages.Pages
 
         }
 
-        public static void SelectLocationTypeStep(String locationType)
+        public void SelectLocationTypeStep(String locationType)
         {
             if (locationType == "on-site")
             {
@@ -123,7 +129,7 @@ namespace MarsQA.SpecFlowPages.Pages
 
         }
 
-        public static void AvailableDaysstep(string days)
+        public void AvailableDaysstep(string days)
         {
             //click and clear text in start date textbox
             startDateTextBox.Click();
@@ -141,7 +147,7 @@ namespace MarsQA.SpecFlowPages.Pages
 
         }
 
-        public static void SelectSkillTradeStep(String tradeType)
+        public void SelectSkillTradeStep(String tradeType)
         {
             if (tradeType == "on-site")
             {
@@ -164,7 +170,7 @@ namespace MarsQA.SpecFlowPages.Pages
         }
 
 
-        public static void UploadSampleWorkStep()
+        public void UploadSampleWorkStep()
         {
             //click Upload samples Button
             uploadBtn.Click();
@@ -172,7 +178,7 @@ namespace MarsQA.SpecFlowPages.Pages
             string relativeFilePath = ConstantHelpers.GetRelativeFilePath(fileName);
         }
 
-        public static void ActiveStep(String activeType)
+        public void ActiveStep(String activeType)
         {
             if (activeType == "on-site")
             {
@@ -183,13 +189,13 @@ namespace MarsQA.SpecFlowPages.Pages
                 hiddenRadioBtn.Click();
 
         }
-        public static void SaveSharePageStep()
+        public void SaveSharePageStep()
         {
 
             saveBtn.Click();
         }
 
-        public static void verifystep()
+        public void verifystep()
         {
 
 

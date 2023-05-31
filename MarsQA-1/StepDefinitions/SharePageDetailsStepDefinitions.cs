@@ -1,4 +1,5 @@
 using MarsQA.SpecFlowPages.Pages;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -7,28 +8,37 @@ namespace MarsQA.StepDefinitions
     [Binding]
     public class SharePageDetailsStepDefinitions
     {
+        private IWebDriver driver;
+        private SharePage sharePage;
+
+        public SharePageDetailsStepDefinitions(ScenarioContext scenarioContext)
+        {
+            driver = scenarioContext.Get<IWebDriver>("driver");
+            sharePage = new SharePage(driver);
+        }
+
         [When(@"Seller is navigate to share skill page")]
         public void WhenSellerIsNavigateToShareSkillPage()
         {
-            SharePage.NavigateStep();
+            sharePage.NavigateStep();
         }
 
         [When(@"Seller enter ""([^""]*)"" Title")]
         public void WhenSellerEnterTitle(string title)
         {
-            SharePage.AddTitleStep(title);
+            sharePage.AddTitleStep(title);
         }
 
         [When(@"Seller enter ""([^""]*)"" Description")]
         public void WhenSellerEnterDescription(string description)
         {
-            SharePage.AddShareDescriptionStep(description);
+            sharePage.AddShareDescriptionStep(description);
         }
 
         [When(@"Seller select ""([^""]*)"" as category and ""([^""]*)"" as sub Category")]
         public void WhenSellerSelectAsCategoryAndAsSubCategory(string business, string presentations)
         {
-            SharePage.SelectCategoryStep(business, presentations);
+            sharePage.SelectCategoryStep(business, presentations);
         }
 
 
@@ -36,14 +46,14 @@ namespace MarsQA.StepDefinitions
         [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as tags")]
         public void WhenSellerEnterAndAsTags(string limitedEdition, string qualityProducts)
         {
-            SharePage.AddTags(limitedEdition, qualityProducts);
+            sharePage.AddTags(limitedEdition, qualityProducts);
         }
 
 
         [When(@"Seller select ""([^""]*)"" as Service type")]
         public void WhenSellerSelectAsServiceType(String radioType)
         {
-            SharePage.SelectServiceTypeStep(radioType);
+            sharePage.SelectServiceTypeStep(radioType);
         }
 
 
@@ -52,14 +62,14 @@ namespace MarsQA.StepDefinitions
         [When(@"Seller select ""([^""]*)"" as Location type")]
         public void WhenSellerSelectAsLocationType(String locationType)
         {
-            SharePage.SelectLocationTypeStep( locationType);
+            sharePage.SelectLocationTypeStep( locationType);
         }
 
 
         [When(@"Seller select ""([^""]*)"" as start date and ""([^""]*)"" as end date")]
         public void WhenSellerSelectAsAvailableStartDateAndAsEndDate(string startDate, string endDate)
         {
-            SharePage.AvailableDaysstep(startDate);
+            sharePage.AvailableDaysstep(startDate);
         }
 
         [When(@"Seller select ""([^""]*)"" ""([^""]*)"" as available start time and (.*) pm as end time")]
@@ -73,7 +83,7 @@ namespace MarsQA.StepDefinitions
         [When(@"Seller choose ""([^""]*)"" as  skill trade")]
         public void WhenSellerChooseAsSkillTrade(string tradeType)
         {
-            SharePage.SelectSkillTradeStep(tradeType);
+            sharePage.SelectSkillTradeStep(tradeType);
         }
 
         [When(@"Seller add new tags ""([^""]*)"" and ""([^""]*)"" for skill exchange")]
@@ -86,20 +96,20 @@ namespace MarsQA.StepDefinitions
         [When(@"Seller upload ""([^""]*)"" work samples")]
         public void WhenSellerUploadWorkSamples(string p0)
         {
-            SharePage.UploadSampleWorkStep();
+            sharePage.UploadSampleWorkStep();
         }
 
         [When(@"Seller select ""([^""]*)"" services")]
         public void WhenSellerSelectServices(string active)
         {
-            SharePage.ActiveStep(active);
+            sharePage.ActiveStep(active);
         }
 
 
         [When(@"Seller click save button")]
         public void WhenSellerClickSaveButton()
         {
-            SharePage.SaveSharePageStep();
+            sharePage.SaveSharePageStep();
         }
 
         [Then(@"Seller is able to save share skill page succussfully")]

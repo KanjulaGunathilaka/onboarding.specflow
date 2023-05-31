@@ -8,13 +8,19 @@ namespace MarsQA.Pages
     [Binding]
     public class SignInPage : CommonDriver
     {
+        private IWebDriver driver;
 
-        private static IWebElement SignInBtn => driver.FindElement(By.XPath("//A[@class='item'][text()='Sign In']"));
-        private static IWebElement Email => driver.FindElement(By.XPath("(//INPUT[@type='text'])[2]"));
-        private static IWebElement Password => driver.FindElement(By.XPath("//INPUT[@type='password']"));
-        private static IWebElement LoginBtn => driver.FindElement(By.XPath("//BUTTON[@class='fluid ui teal button'][text()='Login']"));
+        public SignInPage(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
 
-        public static void SignInStep()
+        private IWebElement SignInBtn => driver.FindElement(By.XPath("//A[@class='item'][text()='Sign In']"));
+        private IWebElement Email => driver.FindElement(By.XPath("(//INPUT[@type='text'])[2]"));
+        private IWebElement Password => driver.FindElement(By.XPath("//INPUT[@type='password']"));
+        private IWebElement LoginBtn => driver.FindElement(By.XPath("//BUTTON[@class='fluid ui teal button'][text()='Login']"));
+
+        public void SignInStep()
         {
             NavigateToUrl();
             SignInBtn.Click();
@@ -23,7 +29,7 @@ namespace MarsQA.Pages
             LoginBtn.Click();
         }
 
-        public static void Login()
+        public void Login()
         {
             NavigateToUrl();
             //Enter Url

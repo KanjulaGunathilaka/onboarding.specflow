@@ -7,7 +7,6 @@ namespace MarsQA.Helpers
     {
         //Base Url
         public static string baseUrl = "http://localhost:5000";
-
         //Base Project Path
         public static string baseProjectPath = @"C:\AAAindustryConnect\internship\onboarding.specflow\MarsQA-1\";
         //ScreenshotPath

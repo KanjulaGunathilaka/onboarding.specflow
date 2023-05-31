@@ -1,4 +1,5 @@
 using MarsQA.SpecFlowPages.Pages;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -7,22 +8,31 @@ namespace MarsQA.StepDefinitions
     [Binding]
     public class ManageListingStepDefinitions
     {
+        private IWebDriver driver;
+        private ManageListingPage manageListingPage;
+
+        public ManageListingStepDefinitions(ScenarioContext scenarioContext)
+        {
+            driver = scenarioContext.Get<IWebDriver>("driver");
+            manageListingPage = new ManageListingPage(driver);
+        }
+
         [When(@"Seller navigate to manage listing")]
         public void WhenSellerNavigateToManageListing()
         {
-            ManageListingPage.NavigateStep();
+            manageListingPage.NavigateStep();
         }
 
         [When(@"listing details visible")]
         public void WhenListingDetailsVisible()
         {
-            ManageListingPage.VisibleStep();
+            manageListingPage.VisibleStep();
         }
 
         [When(@"Seller click ""([^""]*)""  on share skill page")]
         public void WhenSellerClickOnShareSkillPage(string p0)
         {
-            ManageListingPage.ViewProfileDetailsStep();
+            manageListingPage.ViewProfileDetailsStep();
         }
 
         [Then(@"Seller is able to see the seller’s profile details successfully")]

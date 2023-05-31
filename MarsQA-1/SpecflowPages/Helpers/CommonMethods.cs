@@ -5,9 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RelevantCodes.ExtentReports;
 using OpenQA.Selenium.Interactions;
-
 
 namespace MarsQA.Helpers
 {
@@ -48,21 +46,33 @@ namespace MarsQA.Helpers
             actions.Perform();
         }
 
-        //ExtentReports
-        #region reports
-        public static ExtentTest test;
-        public static ExtentReports Extent;
-
-
-
-        public static void ExtentReports()
+        public static void SetField(IWebElement element, string text)
         {
-            Extent = new ExtentReports(ConstantHelpers.ReportsPath, true, DisplayOrder.NewestFirst);
-            Extent.LoadConfig(ConstantHelpers.ReportXMLPath);
+            element.Clear();
+            element.SendKeys(text);
         }
-    }
-    #endregion
 
+        public string CheckGivenFieldIsDisplayed(IWebElement element, string message)
+        {
+            try
+            {
+                if (element.Displayed)
+                {
+                    return message + " is displayed";
+                }
+                else
+                {
+                    return message + " is NOT displayed";
+                }
+            }
+            catch (NoSuchElementException)
+            {
+                return message + " is NOT displayed";
+            }
+        }
+
+
+    }
 }
 
 

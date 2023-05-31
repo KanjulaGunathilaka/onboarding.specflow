@@ -1,4 +1,6 @@
+using MarsQA.Pages;
 using MarsQA.SpecFlowPages.Pages;
+using OpenQA.Selenium;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -8,57 +10,64 @@ namespace MarsQA
     [Binding]
     public class ProfileDetailsStepDefinitions
     {
+        private IWebDriver driver;
+        private ProfilePage profilePage;
+
+        public ProfileDetailsStepDefinitions(ScenarioContext scenarioContext)
+        {
+            driver = scenarioContext.Get<IWebDriver>("driver");
+            profilePage = new ProfilePage(driver);
+        }
 
         [When(@"Seller enter name details$")]
-        public static void WhenSellerEnterNameDetails(Table table)
+        public void WhenSellerEnterNameDetails(Table table)
         {
             foreach (var row in table.Rows)
             {
                 string firstName = row["FirstName"];
                 string lastName = row["LastName"];
-                ProfilePage.EnterNameStep(firstName, lastName);
+                profilePage.EnterNameStep(firstName, lastName);
             }
-            ProfilePage.SaveNameStep();
-            //ProfilePage.VerifyNameStep();
+            profilePage.SaveNameStep();
         }
 
         [When(@"Seller enter availability details as ""([^""]*)"" and ""([^""]*)"" and ""([^""]*)""")]
         public void WhenSellerEnterAvailabilityDetails(string availabilityType, string hoursType, string targetType)
         {
-            ProfilePage.AvailabilityStep(availabilityType);
-            ProfilePage.HoursStep(hoursType);
-            ProfilePage.TargetStep(targetType);
+            profilePage.AvailabilityStep(availabilityType);
+            profilePage.HoursStep(hoursType);
+            profilePage.TargetStep(targetType);
         }
 
         [When(@"Seller enter ""([^""]*)"" description")]
         public void WhenSellerEnterDescription(string description)
         {
-            ProfilePage.AddDescriptionStep(description);
+            profilePage.AddDescriptionStep(description);
         }
 
         [When(@"Seller add ""([^""]*)"" and ""([^""]*)"" as language details")]
         public void WhenSellerAddLanguageDetails(string language, string level)
         {
-            ProfilePage.AddLanguagesStep(language, level);
+            profilePage.AddLanguagesStep(language, level);
         }
 
         [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as skills details")]
         public void WhenSellerEnterSkillsDetails(String skill, String level)
         {
-            ProfilePage.AddSkillsStep(skill, level);
+            profilePage.AddSkillsStep(skill, level);
         }
 
         [When(@"Seller enter ""([^""]*)"",""([^""]*)"",""([^""]*)"", ""([^""]*)"" and ""([^""]*)"" as education details")]
         public void WhenSellerEnterAndAsEducationDetails(String university, String country, string title, string degree, string year)
         {
-            ProfilePage.AddEducationStep(university, country, title, degree, year);
+            profilePage.AddEducationStep(university, country, title, degree, year);
         }
 
 
         [When(@"Seller enter ""([^""]*)"" , ""([^""]*)""  and ""([^""]*)"" as Certification details")]
         public void WhenSellerEnterCertificationDetails(String certification, String year, string from)
         {
-            ProfilePage.AddCertificationStep(certification, year, from);
+            profilePage.AddCertificationStep(certification, year, from);
         }
 
         [Then(@"Seller able to add profile details successfully")]
