@@ -9,8 +9,10 @@ Scenario: Seller Add Sellers profile details
 	When Seller enter name details
 		| FirstName | LastName |
 		| Sandha    | Herath   |
-	#And Seller enter availability details as "Part Time" and "Less Than 30" and "less than 500"
-	#And Seller enter "Experienced IT Solutions" description
+	And Seller enter availability details
+		| Availability | Hours                    | EarnTarget               |
+		| Part Time    | Less than 30hours a week | Less than $500 per month |
+	And Seller enter "Experienced IT Solutions" as description
 	#And Seller add "English" and "basic" as language details
 	#And Seller enter "Testing" and "Beginner" as skills details
 	#And Seller enter "massey","New Zealand","B.Sc", "Management" and "2020" as education details

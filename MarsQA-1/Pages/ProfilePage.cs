@@ -1,8 +1,11 @@
 ﻿using MarsQA.Helpers;
+using MarsQA.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace MarsQA.Pages
@@ -15,58 +18,47 @@ namespace MarsQA.Pages
         {
             this.driver = driver;
         }
+
+        //User Name Details Section
         private IWebElement nameExpandBtn => driver.FindElement(By.XPath("//*[@id='account-profile-section']//div[@class='title']/i"));
         private IWebElement firstNameTextBox => driver.FindElement(By.XPath("//input[@name='firstName']"));
         private IWebElement lastNameTextBox => driver.FindElement(By.XPath("//input[@name='lastName']"));
         private IWebElement nameSaveBtn => driver.FindElement(By.XPath("//button[@class='ui teal button']"));
-        private IWebElement nameTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[2]/div/div/div[1]"));
+        private IWebElement fullNameDiv => driver.FindElement(By.XPath("//div[@class='title']"));
 
-        private IWebElement AvailabilityEditBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i"));
-        private IWebElement AvailabilityDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/select"));
+        //User Preference of Work Section
+        private IWebElement availabilityEditBtn => driver.FindElement(By.XPath("//div[@class='item'][2]//div/span/i"));
+        private IWebElement availabilityDropDownBtn => driver.FindElement(By.XPath("//select[@class='ui right labeled dropdown' and @name='availabiltyType']"));
+        private SelectElement availabilityDropDown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui right labeled dropdown' and @name='availabiltyType']")));
 
-        private SelectElement AvailabilityDropDown;
-        private IWebElement PartTimeOption => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/select/option[2]"));
-        private IWebElement FullTimeOption => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/select/option[3]"));
+        private IWebElement hoursEditBtn => driver.FindElement(By.XPath("//div[@class='item'][3]//div/span/i"));
+        private IWebElement hoursDropDownBtn => driver.FindElement(By.XPath("//select[@class='ui right labeled dropdown' and @name='availabiltyHour']"));
+        private SelectElement hoursDropDown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui right labeled dropdown' and @name='availabiltyHour']")));
 
-        private IWebElement HoursEditBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/i"));
+        private IWebElement earnTargetsEditBtn => driver.FindElement(By.XPath("//div[@class='item'][4]//div/span/i"));
+        private IWebElement earnTargetsDropDownBtn => driver.FindElement(By.XPath("//select[@class='ui right labeled dropdown' and @name='availabiltyTarget']"));
+        private SelectElement earnTargetsDropDown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui right labeled dropdown' and @name='availabiltyTarget']")));
 
-        private IWebElement HoursDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select"));
+        //User Description Section
+        private IWebElement descriptionEditButton => driver.FindElement(By.XPath("//h3[@class='ui dividing header'][text()='Description']/span/i"));
+        private IWebElement descriptionTextArea => driver.FindElement(By.XPath("//textarea[@name='value']"));
+        private IWebElement descriptionSaveBtn => driver.FindElement(By.XPath("//div[@class='ui twelve wide column']//button[@class='ui teal button']"));
+        private IWebElement successMessageDiv => driver.FindElement(By.XPath("body:nth-child(2) div.ns-box.ns-growl.ns-effect-jelly.ns-type-success.ns-show:nth-child(1) > div.ns-box-inner"));
 
-        private SelectElement HoursDropDown => new SelectElement(driver.FindElement(By.ClassName("HoursType")));
+        //Qualifictions Section
+        private IWebElement qualificationTable => driver.FindElement(By.XPath("//table[@class='ui fixed table']"));
+        private IWebElement languageTabLink => driver.FindElement(By.XPath("//a[@data-tab='first']"));
+        private IWebElement skillsTabLink => driver.FindElement(By.XPath("//a[@data-tab='second']"));
+        private IWebElement educationTabLink => driver.FindElement(By.XPath("//a[@data-tab='third']"));
+        private IWebElement certificationTabLink => driver.FindElement(By.XPath("//a[@data-tab='fourth']"));
 
-        //private IWebElement Morethan30hoursOption => Driver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select/option[1]"));
-        //private IWebElement Lessthan30hoursOption => Driver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select/option[2]"));
-        //private IWebElement AsNeededOption => Driver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select/option[4]"));
+        private IWebElement LanguageAddNewButton => driver.FindElement(By.XPath("//table[@class='ui fixed table']//th[3]/div[@class='ui teal button ']"));
+        private IWebElement LanguageTextBox => driver.FindElement(By.XPath("//input[@placeholder='Add Language']"));
+        private IWebElement LanguageLevelDropdownBtn => driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='level']"));
+        private SelectElement LanguageLevelDropDown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='level']")));
+        private IWebElement LanguageAddBtn => driver.FindElement(By.XPath("//input[@value='Add']"));
+        private IWebElement LanguageDeleteBtn => driver.FindElement(By.XPath("//tbody//td[@class='right aligned']/span[2]"));
 
-        private IWebElement EarnTargetsEditBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/i"));
-
-
-        private IWebElement EarnTargetsDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/select"));
-
-        private SelectElement EarnTargetsDropDown => new SelectElement(driver.FindElement(By.ClassName("TargetsType")));
-        //private IWebElement LessThan500Option => Driver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/select/option[1]"));
-        //private IWebElement Between5001000Option => Driver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/select/option[3]"));
-        //private IWebElement MoreThan1000Option => Driver.driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/select/option[4]"));
-
-
-        private IWebElement DescriptionEditButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i"));
-
-        private IWebElement DescriptionTextArea => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/div[1]/textarea"));
-
-        private IWebElement DescriptionSaveBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button"));
-        private IWebElement SuccessMessageDiv => driver.FindElement(By.XPath("body:nth-child(2) div.ns-box.ns-growl.ns-effect-jelly.ns-type-success.ns-show:nth-child(1) > div.ns-box-inner"));
-
-        private IWebElement LanguageAddNewButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
-
-        private IWebElement LanguageTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
-
-        private IWebElement LanguageLevelDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
-
-        private SelectElement LanguageLevelDropDown => new SelectElement(driver.FindElement(By.ClassName("level")));
-
-        private IWebElement LanguageAddBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
-
-        private IWebElement SkillsBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
 
         private IWebElement skillsAddNewBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
 
@@ -76,7 +68,6 @@ namespace MarsQA.Pages
 
         private IWebElement skillsAddBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
 
-        private IWebElement EducationBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[3]"));
 
         private IWebElement EducationAddNewBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/thead/tr/th[6]/div"));
 
@@ -99,7 +90,6 @@ namespace MarsQA.Pages
 
         private IWebElement EducationAddBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[3]/div/input[1]"));
 
-        private IWebElement CertificationBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
 
         private IWebElement CertificationAddNewBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/thead/tr/th[4]/div"));
 
@@ -129,57 +119,41 @@ namespace MarsQA.Pages
 
         public void VerifyNameStep()
         {
-            Assert.That(nameTextBox.Text == "Sandha Herath", "Save name details successfully.");
+            Assert.That(fullNameDiv.Text == "Sandha Herath", "Save name details successfully.");
         }
 
         public void AvailabilityStep(String availabilityType)
         {
-            //click edit button
-            AvailabilityEditBtn.Click();
-            //click drop down
-            AvailabilityDropdownBtn.Click();
-            //select value from dropdown
-            AvailabilityDropDown = new SelectElement(driver.FindElement(By.XPath("//select[@name='availabiltyType']")));
-            AvailabilityDropDown.SelectByText(availabilityType);
+            ScrollToElement(driver, availabilityEditBtn);
+            availabilityEditBtn.Click();
+            availabilityDropDownBtn.Click();
+            Thread.Sleep(1000);
+            availabilityDropDown.SelectByText(availabilityType);
         }
 
         public void HoursStep(String HoursType)
         {
-            //click Hours edit button
-            HoursEditBtn.Click();
-            //click drop down
-            HoursDropdownBtn.Click();
-            //select value from dropdown
-            HoursDropDown.SelectByText(HoursType);
+            hoursEditBtn.Click();
+            hoursDropDownBtn.Click();
+            Thread.Sleep(1000);
+            hoursDropDown.SelectByText(HoursType);
         }
 
         public void TargetStep(String TargetsType)
         {
-            //click edit button
-            EarnTargetsEditBtn.Click();
-            //click drop down
-            EarnTargetsDropdownBtn.Click();
-            //select value from dropdown
-            EarnTargetsDropDown.SelectByText(TargetsType);
+            earnTargetsEditBtn.Click();
+            earnTargetsDropDownBtn.Click();
+            Thread.Sleep(1000);
+            earnTargetsDropDown.SelectByText(TargetsType);
         }
 
         public void AddDescriptionStep(String description)
         {
-            //DescriptionEditBtn.Click();
-            DescriptionEditButton.Click();
-
-            //click and clear text in description textbox
-            DescriptionTextArea.Click();
-            DescriptionTextArea.Clear();
-
-            //enter description value
-            DescriptionTextArea.SendKeys(description);
-
-            //click on save button
-            DescriptionSaveBtn.Click();
-
-            //verify alert text for description update
-            Assert.That(SuccessMessageDiv.Displayed);
+            descriptionEditButton.Click();
+            descriptionTextArea.Click();
+            SetField(descriptionTextArea, description);
+            descriptionSaveBtn.Click();
+            Assert.That(successMessageDiv.Displayed);
         }
 
         public void AddLanguagesStep(String language, String level)
@@ -201,7 +175,7 @@ namespace MarsQA.Pages
             LanguageAddBtn.Click();
 
             //verify alert text for Language update
-            Assert.That(SuccessMessageDiv.Displayed);
+            Assert.That(successMessageDiv.Displayed);
 
             // Delete added language
         }
@@ -209,7 +183,7 @@ namespace MarsQA.Pages
         public void AddSkillsStep(String skill, String level)
         {
             //Click skills Button
-            SkillsBtn.Click();
+            skillsTabLink.Click();
 
             //skillsEditBtn.Click();
             skillsAddNewBtn.Click();
@@ -228,14 +202,14 @@ namespace MarsQA.Pages
             skillsAddBtn.Click();
 
             //verify alert text for Skills update
-            Assert.That(SuccessMessageDiv.Displayed);
+            Assert.That(successMessageDiv.Displayed);
 
 
         }
         public void AddEducationStep(String university, String country, string title, string degree, string year)
         {
             //Click Education Button
-            EducationBtn.Click();
+            educationTabLink.Click();
 
             //skillsEditBtn.Click();
             EducationAddNewBtn.Click();
@@ -273,14 +247,14 @@ namespace MarsQA.Pages
             EducationAddBtn.Click();
 
             //verify alert text for Education update
-            Assert.That(SuccessMessageDiv.Displayed);
+            Assert.That(successMessageDiv.Displayed);
 
 
         }
         public void AddCertificationStep(String certification, String year, string from)
         {
             //Click Certification Button
-            CertificationBtn.Click();
+            certificationTabLink.Click();
 
             //CertificationEditBtn.Click();
             CertificationAddNewBtn.Click();
@@ -308,9 +282,47 @@ namespace MarsQA.Pages
             CertificationAddBtn.Click();
 
             //verify alert text for Language update
-            Assert.That(SuccessMessageDiv.Displayed);
-
-
+            Assert.That(successMessageDiv.Displayed);
         }
+
+        private void DeleteTableRowIfExists(IWebElement table)
+        {
+            try
+            {
+                IReadOnlyCollection<IWebElement> rows = table.FindElements(By.TagName("tr"));
+                if (rows.Count > 0)
+                {
+                    IWebElement deleteButton = null;
+                    bool deleteButtonFound = false;
+                    foreach (IWebElement row in rows)
+                    {
+                        deleteButton = row.FindElement(By.XPath(".//td[@class='right aligned']/span[2]"));
+                        if (deleteButton != null)
+                        {
+                            deleteButtonFound = true;
+                            break;
+                        }
+                    }
+                    if (deleteButtonFound)
+                    {
+                        deleteButton.Click();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Delete button not found in any row.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found in the table.");
+                }
+            }
+            catch (NoSuchElementException)
+            {
+                Console.WriteLine("Table or delete button not found.");
+            }
+        }
+
+
     }
 }

@@ -1,4 +1,4 @@
-using MarsQA.SpecFlowPages.Pages;
+using MarsQA.Pages;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;

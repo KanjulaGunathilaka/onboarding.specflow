@@ -1,4 +1,4 @@
-using MarsQA.SpecFlowPages.Pages;
+using MarsQA.Pages;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
@@ -29,15 +29,21 @@ namespace MarsQA
             profilePage.SaveNameStep();
         }
 
-        [When(@"Seller enter availability details as ""([^""]*)"" and ""([^""]*)"" and ""([^""]*)""")]
-        public void WhenSellerEnterAvailabilityDetails(string availabilityType, string hoursType, string targetType)
+        [When(@"Seller enter availability details$")]
+        public void WhenSellerEnterAvailabilityDetails(Table table)
         {
-            profilePage.AvailabilityStep(availabilityType);
-            profilePage.HoursStep(hoursType);
-            profilePage.TargetStep(targetType);
+            foreach (var row in table.Rows)
+            {
+                string availabilityType = row["Availability"];
+                string hoursType = row["Hours"];
+                string targetType = row["EarnTarget"];
+                profilePage.AvailabilityStep(availabilityType);
+                profilePage.HoursStep(hoursType);
+                profilePage.TargetStep(targetType);
+            }
         }
 
-        [When(@"Seller enter ""([^""]*)"" description")]
+        [When(@"Seller enter ""([^""]*)"" as description")]
         public void WhenSellerEnterDescription(string description)
         {
             profilePage.AddDescriptionStep(description);
