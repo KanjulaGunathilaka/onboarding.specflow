@@ -4,9 +4,8 @@
 	So that Seller can promote the skills
 
 @SELLERPROFILE
-Scenario: Seller Add Sellers profile details
+Scenario: Seller Add Sellers Profile details
 	Given Seller logged in to the website
-
 	When Seller enter name details
 		| FirstName | LastName |
 		| Sandha    | Herath   |
@@ -16,7 +15,6 @@ Scenario: Seller Add Sellers profile details
 		| Part Time    | Less than 30hours a week | Less than $500 per month |
 
 	And Seller enter "Experienced IT Solutions" as description
-
 	And Seller add language details
 		| Language | Level |
 		| English  | Basic |
@@ -35,7 +33,7 @@ Scenario: Seller Add Sellers profile details
 	Then Seller should be able to see profile details successfully
 
 
-Scenario: Seller share Sellers profile details
+Scenario: Seller Share Sellers Profile details
 	Given Seller logged in to the website
 	When Seller is navigate to share skill page
 	And Seller enter "Quality Finds" Title
@@ -48,12 +46,20 @@ Scenario: Seller share Sellers profile details
 	And Seller choose "Credit" as skill trade
 	And Seller select "Active" services
 	And Seller click save button
-	Then Seller is able to save share skill page successfully
+	Then Seller should be able to see saved skills in Manage Listings successfully
+		| Title         | Category          |
+		| Quality Finds | Digital Marketing |
 
-Scenario: Seller view sellers added profile details
+
+Scenario: Seller View Added Skills Details
 	Given Seller logged in to the website
-	When Seller navigate to manage listing
-	And listing details visible
-	And Seller click "View sign"  on share skill page
-	Then Seller is able to see the seller’s profile details successfully
+	And Seller add new skills to the profile
+		| Title              | Description                      | Category          | SubCategory |
+		| View Skills Shared | This is to test View Skills page | Graphics & Design | Logo Design |
 
+	And Seller navigate to manage listing page
+	When Seller click "View Skill" on Manage Listings page
+
+	Then Seller is able to see the seller’s profile details successfully
+		| Title              | Description                      | Category          | SubCategory | ServiceType |
+		| View Skills Shared | This is to test View Skills page | Graphics & Design | Logo Design | Hourly      |

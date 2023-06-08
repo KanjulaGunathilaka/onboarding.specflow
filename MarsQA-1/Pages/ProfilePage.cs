@@ -3,10 +3,8 @@ using MarsQA.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using RazorEngine;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
 

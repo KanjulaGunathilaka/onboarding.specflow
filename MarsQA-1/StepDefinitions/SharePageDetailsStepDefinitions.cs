@@ -1,6 +1,5 @@
 using MarsQA.Pages;
 using OpenQA.Selenium;
-using System;
 using TechTalk.SpecFlow;
 
 namespace MarsQA.StepDefinitions
@@ -90,10 +89,29 @@ namespace MarsQA.StepDefinitions
             sharePage.SaveSharePageStep();
         }
 
-        [Then(@"Seller is able to save share skill page successfully")]
-        public void ThenSellerIsAbleToSaveShareSkillPageSuccessfully()
+        [Given(@"Seller add new skills to the profile")]
+        public void GivenSellerAddNewSkillsToTheProfile(Table table)
         {
-            throw new PendingStepException();
+            foreach (var row in table.Rows)
+            {
+                string title = row["Title"];
+                string description = row["Description"];
+                string category = row["Category"];
+                string subCategory = row["SubCategory"];
+
+                sharePage.NavigateStep();
+                sharePage.AddTitleStep(title);
+                sharePage.AddShareDescriptionStep(description);
+                sharePage.SelectCategoryStep(category, subCategory);
+                sharePage.AddTags("viewTag1", "viewTag2");
+                sharePage.SelectServiceTypeStep("Hourly basis service");
+                sharePage.SelectLocationTypeStep("On-site");
+                sharePage.AvailableDaysStep("31/12/2023", "30/12/2024");
+                sharePage.SelectSkillTradeStep("On-site");
+                sharePage.ActiveStep("Active");
+                sharePage.SaveSharePageStep();
+            }
         }
+
     }
 }

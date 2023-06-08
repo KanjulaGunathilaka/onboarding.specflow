@@ -1,6 +1,5 @@
 ﻿using MarsQA.Pages;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 
 namespace MarsQA.StepDefinitions
@@ -11,7 +10,7 @@ namespace MarsQA.StepDefinitions
         private IWebDriver driver;
         private SignInPage signInPage;
 
-        public LoginStepDefinitions(IWebDriver driver) {  this.driver = driver; }
+        public LoginStepDefinitions(IWebDriver driver) { this.driver = driver; }
 
         [BeforeScenario]
         public void Setup(ScenarioContext scenarioContext)

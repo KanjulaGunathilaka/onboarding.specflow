@@ -1,6 +1,7 @@
 using MarsQA.Pages;
+using MarsQA.Utils;
+using NLog;
 using OpenQA.Selenium;
-using System;
 using TechTalk.SpecFlow;
 
 namespace MarsQA.StepDefinitions
@@ -9,6 +10,7 @@ namespace MarsQA.StepDefinitions
     public class ManageListingStepDefinitions
     {
         private IWebDriver driver;
+        private static readonly Logger Logger = LoggerManager.Logger;
         private ManageListingPage manageListingPage;
 
         public ManageListingStepDefinitions(ScenarioContext scenarioContext)
@@ -17,28 +19,40 @@ namespace MarsQA.StepDefinitions
             manageListingPage = new ManageListingPage(driver);
         }
 
-        [When(@"Seller navigate to manage listing")]
-        public void WhenSellerNavigateToManageListing()
+        [Then(@"Seller should be able to see saved skills in Manage Listings successfully")]
+        public void ThenSellerIsAbleToSaveShareSkillPageSuccessfully(Table table)
         {
-            manageListingPage.NavigateStep();
+            manageListingPage.verifySavedSkillStep(table);
+            manageListingPage.DeleteSkillsStep();
         }
 
-        [When(@"listing details visible")]
-        public void WhenListingDetailsVisible()
+        [Given(@"Seller navigate to manage listing page")]
+        public void GivenSellerNavigateToManageListing()
         {
-            manageListingPage.VisibleStep();
+            manageListingPage.NavigateToManageListingsStep();
         }
 
-        [When(@"Seller click ""([^""]*)""  on share skill page")]
-        public void WhenSellerClickOnShareSkillPage(string p0)
+        [When(@"Seller click ""([^""]*)"" on Manage Listings page")]
+        public void WhenSellerClickOnShareSkillPage(string viewSkill)
         {
             manageListingPage.ViewProfileDetailsStep();
         }
 
         [Then(@"Seller is able to see the seller’s profile details successfully")]
-        public void ThenSellerIsAbleToSeeTheSellerSProfileDetailsSuccessfully()
+        public void ThenSellerIsAbleToSeeTheSellerSProfileDetailsSuccessfully(Table table)
         {
-            throw new PendingStepException();
+            manageListingPage.verifySharedSkillDetails(table);
+            try
+            {
+                manageListingPage.NavigateToManageListingsStep();
+                manageListingPage.DeleteSkillsStep();
+            }
+            catch
+            {
+                Logger.Info("Delete Skills not successful");
+            }
         }
+
+
     }
 }

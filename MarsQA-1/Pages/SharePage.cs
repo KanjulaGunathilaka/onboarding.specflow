@@ -1,13 +1,8 @@
 ﻿using MarsQA.Helpers;
+using MarsQA.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 using TechTalk.SpecFlow;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MarsQA.Utils;
 
 namespace MarsQA.Pages
 {
@@ -143,13 +138,6 @@ namespace MarsQA.Pages
             saveBtn.Click();
             Wait.WaitFor(1000);
         }
-
-        public void verifystep()
-        {
-
-
-        }
-
 
     }
 
