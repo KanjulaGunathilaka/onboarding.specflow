@@ -6,36 +6,49 @@
 @SELLERPROFILE
 Scenario: Seller Add Sellers profile details
 	Given Seller logged in to the website
+
 	When Seller enter name details
 		| FirstName | LastName |
 		| Sandha    | Herath   |
+
 	And Seller enter availability details
 		| Availability | Hours                    | EarnTarget               |
 		| Part Time    | Less than 30hours a week | Less than $500 per month |
+
 	And Seller enter "Experienced IT Solutions" as description
-	#And Seller add "English" and "basic" as language details
-	#And Seller enter "Testing" and "Beginner" as skills details
-	#And Seller enter "massey","New Zealand","B.Sc", "Management" and "2020" as education details
-	#And Seller enter "Istqb" , "Adobe"  and "2019" as Certification details
-	#Then Seller able to add profile details successfully
+
+	And Seller add language details
+		| Language | Level |
+		| English  | Basic |
+
+	And Seller enter skills details
+		| Skill              | Level    |
+		| Functional Testing | Beginner |
+
+	And Seller enter education details
+		| University          | Country   | Title  | Degree | Year |
+		| Victoria University | Australia | B.Tech | BSc IT | 2022 |
+	And Seller enter Certification details
+		| Certificate | Institute | Year |
+		| ISTQB CTFL  | ISTQB     | 2022 |
+
+	Then Seller should be able to see profile details successfully
+
 
 Scenario: Seller share Sellers profile details
 	Given Seller logged in to the website
 	When Seller is navigate to share skill page
 	And Seller enter "Quality Finds" Title
 	And Seller enter "Discover a world of handpicked treasures and unique finds" Description
-	And Seller select "Business" as category and "Presentations" as sub Category
+	And Seller select "Digital Marketing" as category and "Content Marketing" as sub Category
 	And Seller enter "LimitedEdition" and "QualityProducts" as tags
-	And Seller select "Hourly basis" as Service type
-	And Seller select "On-site" as Location type
+	And Seller select "Hourly basis service" as Service type
+	And Seller select "Online" as Location type
 	And Seller select "10/06/2023" as start date and "30/06/2023" as end date
-	And Seller select "Monday " "8.00 am " as available start time and 5.00 pm as end time
-	And Seller choose "Skill-exchange" as  skill trade
-	And Seller add new tags "BusinessExchange" and "CodingExchange" for skill exchange
-	And Seller upload "work sample pdf" work samples
+	And Seller choose "Credit" as skill trade
 	And Seller select "Active" services
 	And Seller click save button
-	Then Seller is able to save share skill page succussfully
+	Then Seller is able to save share skill page successfully
 
 Scenario: Seller view sellers added profile details
 	Given Seller logged in to the website

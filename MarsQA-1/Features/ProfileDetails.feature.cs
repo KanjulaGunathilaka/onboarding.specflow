@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             "Sandha",
                             "Herath"});
-#line 9
+#line 10
  testRunner.When("Seller enter name details", ((string)(null)), table1, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -123,11 +123,58 @@ this.ScenarioInitialize(scenarioInfo);
                             "Part Time",
                             "Less than 30hours a week",
                             "Less than $500 per month"});
-#line 12
+#line 14
  testRunner.And("Seller enter availability details", ((string)(null)), table2, "And ");
 #line hidden
-#line 15
+#line 18
  testRunner.And("Seller enter \"Experienced IT Solutions\" as description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Language",
+                            "Level"});
+                table3.AddRow(new string[] {
+                            "English",
+                            "Basic"});
+#line 20
+ testRunner.And("Seller add language details", ((string)(null)), table3, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Skill",
+                            "Level"});
+                table4.AddRow(new string[] {
+                            "Functional Testing",
+                            "Beginner"});
+#line 24
+ testRunner.And("Seller enter skills details", ((string)(null)), table4, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "University",
+                            "Country",
+                            "Title",
+                            "Degree",
+                            "Year"});
+                table5.AddRow(new string[] {
+                            "Victoria University",
+                            "Australia",
+                            "B.Tech",
+                            "BSc IT",
+                            "2022"});
+#line 28
+ testRunner.And("Seller enter education details", ((string)(null)), table5, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Certificate",
+                            "Institute",
+                            "Year"});
+                table6.AddRow(new string[] {
+                            "ISTQB CTFL",
+                            "ISTQB",
+                            "2022"});
+#line 31
+ testRunner.And("Seller enter Certification details", ((string)(null)), table6, "And ");
+#line hidden
+#line 35
+ testRunner.Then("Seller should be able to see profile details successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -139,7 +186,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Seller share Sellers profile details", null, ((string[])(null)));
-#line 22
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -159,55 +206,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 39
  testRunner.Given("Seller logged in to the website", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 40
  testRunner.When("Seller is navigate to share skill page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 41
  testRunner.And("Seller enter \"Quality Finds\" Title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
+#line 42
  testRunner.And("Seller enter \"Discover a world of handpicked treasures and unique finds\" Descript" +
                         "ion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 27
- testRunner.And("Seller select \"Business\" as category and \"Presentations\" as sub Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.And("Seller select \"Digital Marketing\" as category and \"Content Marketing\" as sub Cate" +
+                        "gory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
+#line 44
  testRunner.And("Seller enter \"LimitedEdition\" and \"QualityProducts\" as tags", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 29
- testRunner.And("Seller select \"Hourly basis\" as Service type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.And("Seller select \"Hourly basis service\" as Service type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 30
- testRunner.And("Seller select \"On-site\" as Location type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.And("Seller select \"Online\" as Location type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 31
+#line 47
  testRunner.And("Seller select \"10/06/2023\" as start date and \"30/06/2023\" as end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 32
- testRunner.And("Seller select \"Monday \" \"8.00 am \" as available start time and 5.00 pm as end tim" +
-                        "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+ testRunner.And("Seller choose \"Credit\" as skill trade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 33
- testRunner.And("Seller choose \"Skill-exchange\" as  skill trade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 34
- testRunner.And("Seller add new tags \"BusinessExchange\" and \"CodingExchange\" for skill exchange", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 35
- testRunner.And("Seller upload \"work sample pdf\" work samples", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 36
+#line 49
  testRunner.And("Seller select \"Active\" services", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 50
  testRunner.And("Seller click save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
- testRunner.Then("Seller is able to save share skill page succussfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 51
+ testRunner.Then("Seller is able to save share skill page successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -219,7 +257,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Seller view sellers added profile details", null, ((string[])(null)));
-#line 40
+#line 53
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -239,19 +277,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 41
+#line 54
  testRunner.Given("Seller logged in to the website", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 42
+#line 55
  testRunner.When("Seller navigate to manage listing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 43
+#line 56
  testRunner.And("listing details visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 44
+#line 57
  testRunner.And("Seller click \"View sign\"  on share skill page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 45
+#line 58
  testRunner.Then("Seller is able to see the seller’s profile details successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

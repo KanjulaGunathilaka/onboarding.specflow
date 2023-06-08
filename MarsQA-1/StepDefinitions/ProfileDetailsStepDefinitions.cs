@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
-namespace MarsQA
+namespace MarsQA.StepDefinitions
 {
     [Binding]
     public class ProfileDetailsStepDefinitions
@@ -49,35 +49,59 @@ namespace MarsQA
             profilePage.AddDescriptionStep(description);
         }
 
-        [When(@"Seller add ""([^""]*)"" and ""([^""]*)"" as language details")]
-        public void WhenSellerAddLanguageDetails(string language, string level)
+        [When(@"Seller add language details$")]
+        public void WhenSellerAddLanguageDetails(Table table)
         {
-            profilePage.AddLanguagesStep(language, level);
+            foreach (var row in table.Rows)
+            {
+                string language = row["Language"];
+                string level = row["Level"];
+                profilePage.AddLanguagesStep(language, level);
+            }
         }
 
-        [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as skills details")]
-        public void WhenSellerEnterSkillsDetails(String skill, String level)
+        [When(@"Seller enter skills details$")]
+        public void WhenSellerEnterSkillsDetails(Table table)
         {
-            profilePage.AddSkillsStep(skill, level);
+            foreach (var row in table.Rows)
+            {
+                string skill = row["Skill"];
+                string level = row["Level"];
+                profilePage.AddSkillsStep(skill, level);
+            }
         }
 
-        [When(@"Seller enter ""([^""]*)"",""([^""]*)"",""([^""]*)"", ""([^""]*)"" and ""([^""]*)"" as education details")]
-        public void WhenSellerEnterAndAsEducationDetails(String university, String country, string title, string degree, string year)
+        [When(@"Seller enter education details$")]
+        public void WhenSellerEnterAndAsEducationDetails(Table table)
         {
-            profilePage.AddEducationStep(university, country, title, degree, year);
+            foreach (var row in table.Rows)
+            {
+                string university = row["University"];
+                string country = row["Country"];
+                string title = row["Title"];
+                string degree = row["Degree"];
+                string year = row["Year"];
+                profilePage.AddEducationStep(university, country, title, degree, year);
+            }
         }
 
 
-        [When(@"Seller enter ""([^""]*)"" , ""([^""]*)""  and ""([^""]*)"" as Certification details")]
-        public void WhenSellerEnterCertificationDetails(String certification, String year, string from)
+        [When(@"Seller enter Certification details")]
+        public void WhenSellerEnterCertificationDetails(Table table)
         {
-            profilePage.AddCertificationStep(certification, year, from);
+            foreach (var row in table.Rows)
+            {
+                string certificate = row["Certificate"];
+                string certifiedFrom = row["Institute"];
+                string year = row["Year"];
+                profilePage.AddCertificationStep(certificate, certifiedFrom, year);
+            }
         }
 
-        [Then(@"Seller able to add profile details successfully")]
-        public void ThenSellerAbleToAddProfileDetailsSuccessfully()
+        [Then(@"Seller should be able to see profile details successfully")]
+        public void ThenSellerShouldBeAbleToSeeProfileDetailsSuccessfully()
         {
-            throw new PendingStepException();
+            profilePage.VerifyProfileSection();
         }
 
     }

@@ -3,8 +3,10 @@ using MarsQA.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using RazorEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -18,6 +20,12 @@ namespace MarsQA.Pages
         {
             this.driver = driver;
         }
+
+        //Profile Section
+        private IWebElement profileSectionLink => driver.FindElement(By.XPath("//div[@class='ui eight item menu']/a[2]"));
+        private IWebElement profileNameDiv => driver.FindElement(By.XPath("//div[@class='ui fluid']"));
+        private IWebElement profileDescDiv => driver.FindElement(By.XPath("//div[@class='eight wide column']//div[@class='ui fluid card']"));
+        private IWebElement profileQualificationsDiv => driver.FindElement(By.XPath("//form[@class='ui form']"));
 
         //User Name Details Section
         private IWebElement nameExpandBtn => driver.FindElement(By.XPath("//*[@id='account-profile-section']//div[@class='title']/i"));
@@ -45,8 +53,12 @@ namespace MarsQA.Pages
         private IWebElement descriptionSaveBtn => driver.FindElement(By.XPath("//div[@class='ui twelve wide column']//button[@class='ui teal button']"));
         private IWebElement successMessageDiv => driver.FindElement(By.XPath("body:nth-child(2) div.ns-box.ns-growl.ns-effect-jelly.ns-type-success.ns-show:nth-child(1) > div.ns-box-inner"));
 
-        //Qualifictions Section
-        private IWebElement qualificationTable => driver.FindElement(By.XPath("//table[@class='ui fixed table']"));
+        //Qualifications Section
+        private IWebElement languagesTable => driver.FindElement(By.XPath("//form/div[2]//div[2]/div/table"));
+        private IWebElement skillsTable => driver.FindElement(By.XPath("//form/div[3]//div[2]/div/table"));
+        private IWebElement educationTable => driver.FindElement(By.XPath("//form/div[4]//div[2]/div/table"));
+        private IWebElement certificationsTable => driver.FindElement(By.XPath("//form/div[5]//div[2]/div/table"));
+
         private IWebElement languageTabLink => driver.FindElement(By.XPath("//a[@data-tab='first']"));
         private IWebElement skillsTabLink => driver.FindElement(By.XPath("//a[@data-tab='second']"));
         private IWebElement educationTabLink => driver.FindElement(By.XPath("//a[@data-tab='third']"));
@@ -60,48 +72,30 @@ namespace MarsQA.Pages
         private IWebElement LanguageDeleteBtn => driver.FindElement(By.XPath("//tbody//td[@class='right aligned']/span[2]"));
 
 
-        private IWebElement skillsAddNewBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
-
-        private IWebElement skillsTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
-
-        private SelectElement skillsLevelDropDown => new SelectElement(driver.FindElement(By.ClassName("level")));
-
-        private IWebElement skillsAddBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
+        private IWebElement skillsAddNewBtn => driver.FindElement(By.XPath("//table[@class='ui fixed table']//th[3]/div[@class='ui teal button']"));
+        private IWebElement skillsTextBox => driver.FindElement(By.XPath("//input[@placeholder='Add Skill']"));
+        private IWebElement skillsLevelDropDownBtn => driver.FindElement(By.XPath("//select[@class='ui fluid dropdown' and @name='level']"));
+        private SelectElement skillsLevelDropDown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui fluid dropdown' and @name='level']")));
+        private IWebElement skillsAddBtn => driver.FindElement(By.XPath("//input[@value='Add']"));
 
 
-        private IWebElement EducationAddNewBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/thead/tr/th[6]/div"));
+        private IWebElement EducationAddNewBtn => driver.FindElement(By.XPath("//table[@class='ui fixed table']//th[6]/div[@class='ui teal button ']"));
+        private IWebElement UniversityTextBox => driver.FindElement(By.XPath("//input[@name='instituteName']"));
+        private IWebElement CountryDropdownBtn => driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='country']"));
+        private SelectElement CountryDropdown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='country']")));
+        private IWebElement TitleDropdownBtn => driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='title']"));
+        private SelectElement TitleDropdown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='title']")));
+        private IWebElement DegreeTextBox => driver.FindElement(By.XPath("//input[@name='degree']"));
+        private IWebElement YearDropdownBtn => driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='yearOfGraduation']"));
+        private SelectElement YearDropdown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui dropdown' and @name='yearOfGraduation']")));
+        private IWebElement EducationAddBtn => driver.FindElement(By.XPath("//input[@value='Add']"));
 
-        private IWebElement UniversityTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[1]/div[1]/input"));
-
-        private IWebElement CountryDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[1]/div[2]/select"));
-
-        private SelectElement CountryDropdown => new SelectElement(driver.FindElement(By.ClassName("country")));
-
-        private IWebElement TitleDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[2]/div[1]/select"));
-
-
-        private SelectElement TitleDropdown => new SelectElement(driver.FindElement(By.ClassName("title")));
-
-        private IWebElement DegreeTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[2]/div[2]/input"));
-
-        private IWebElement YearDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[2]/div[3]/select"));
-
-        private SelectElement YearDropdown => new SelectElement(driver.FindElement(By.ClassName("year")));
-
-        private IWebElement EducationAddBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[3]/div/input[1]"));
-
-
-        private IWebElement CertificationAddNewBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/thead/tr/th[4]/div"));
-
-        private IWebElement CertificateTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[1]/div/input"));
-
-        private IWebElement FromTextBox => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[2]/div[1]/input"));
-
-        private IWebElement GraduatedYearDropdownBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[2]/div[2]/select"));
-
-        private SelectElement GraduatedYearDropDown => new SelectElement(driver.FindElement(By.ClassName("year")));
-
-        private IWebElement CertificationAddBtn => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[3]/input[1]"));
+        private IWebElement CertificationAddNewBtn => driver.FindElement(By.XPath("//table[@class='ui fixed table']//th[4]/div[@class='ui teal button ']"));
+        private IWebElement CertificateTextBox => driver.FindElement(By.XPath("//input[@name='certificationName']"));
+        private IWebElement FromTextBox => driver.FindElement(By.XPath("//input[@name='certificationFrom']"));
+        private IWebElement GraduatedYearDropdownBtn => driver.FindElement(By.XPath("//select[@class='ui fluid dropdown' and @name='certificationYear']"));
+        private SelectElement GraduatedYearDropDown => new SelectElement(driver.FindElement(By.XPath("//select[@class='ui fluid dropdown' and @name='certificationYear']")));
+        private IWebElement CertificationAddBtn => driver.FindElement(By.XPath("//input[@value='Add']"));
 
         public void EnterNameStep(string firstName, string lastName)
         {
@@ -122,7 +116,7 @@ namespace MarsQA.Pages
             Assert.That(fullNameDiv.Text == "Sandha Herath", "Save name details successfully.");
         }
 
-        public void AvailabilityStep(String availabilityType)
+        public void AvailabilityStep(string availabilityType)
         {
             ScrollToElement(driver, availabilityEditBtn);
             availabilityEditBtn.Click();
@@ -131,7 +125,7 @@ namespace MarsQA.Pages
             availabilityDropDown.SelectByText(availabilityType);
         }
 
-        public void HoursStep(String HoursType)
+        public void HoursStep(string HoursType)
         {
             hoursEditBtn.Click();
             hoursDropDownBtn.Click();
@@ -139,164 +133,107 @@ namespace MarsQA.Pages
             hoursDropDown.SelectByText(HoursType);
         }
 
-        public void TargetStep(String TargetsType)
+        public void TargetStep(string TargetsType)
         {
             earnTargetsEditBtn.Click();
             earnTargetsDropDownBtn.Click();
-            Thread.Sleep(1000);
+            Wait.WaitFor(500);
             earnTargetsDropDown.SelectByText(TargetsType);
         }
 
-        public void AddDescriptionStep(String description)
+        public void AddDescriptionStep(string description)
         {
             descriptionEditButton.Click();
             descriptionTextArea.Click();
             SetField(descriptionTextArea, description);
             descriptionSaveBtn.Click();
-            Assert.That(successMessageDiv.Displayed);
         }
 
-        public void AddLanguagesStep(String language, String level)
+        public void AddLanguagesStep(string language, string level)
         {
-            //LanguageEditBtn.Click();
+            DeleteTableRowIfExists(languagesTable);
             LanguageAddNewButton.Click();
-
-            //click and clear text in Language textbox
-            LanguageTextBox.Click();
-
-            //enter Language value
-            LanguageTextBox.SendKeys(language);
-
+            Wait.WaitFor(500);
+            SetField(LanguageTextBox, language);
             LanguageLevelDropdownBtn.Click();
-            //select value from dropdown
             LanguageLevelDropDown.SelectByText(level);
-
-            //click on save button
             LanguageAddBtn.Click();
-
-            //verify alert text for Language update
-            Assert.That(successMessageDiv.Displayed);
-
-            // Delete added language
+            Wait.WaitFor(500);
+            Assert.IsTrue(IsDataVisibleInTableRow(languagesTable, language), "Language is not added successfully");
         }
 
-        public void AddSkillsStep(String skill, String level)
+        public void AddSkillsStep(string skill, string level)
         {
-            //Click skills Button
             skillsTabLink.Click();
-
-            //skillsEditBtn.Click();
+            Wait.WaitFor(1000);
+            DeleteTableRowIfExists(skillsTable);
             skillsAddNewBtn.Click();
-
-            //click and clear text in Language textbox
-            skillsTextBox.Click();
-
-            //enter Language value
-            skillsTextBox.SendKeys(skill);
-
-            LanguageLevelDropdownBtn.Click();
-            //select value from dropdown
+            Wait.WaitFor(500);
+            SetField(skillsTextBox, skill);
+            skillsLevelDropDownBtn.Click();
             skillsLevelDropDown.SelectByText(level);
-
-            //click on save button
             skillsAddBtn.Click();
-
-            //verify alert text for Skills update
-            Assert.That(successMessageDiv.Displayed);
-
-
+            Wait.WaitFor(500);
+            Assert.IsTrue(IsDataVisibleInTableRow(skillsTable, skill), "Skill is not added successfully");
         }
-        public void AddEducationStep(String university, String country, string title, string degree, string year)
+
+        public void AddEducationStep(string university, string country, string title, string degree, string year)
         {
-            //Click Education Button
             educationTabLink.Click();
-
-            //skillsEditBtn.Click();
+            Wait.WaitFor(1000);
+            DeleteTableRowIfExists(educationTable);
             EducationAddNewBtn.Click();
-
-            //click and clear text in Education textbox
-            UniversityTextBox.Click();
-
-            //enter Education valuecountr
-            UniversityTextBox.SendKeys(university);
-
-
-            //Select Country of the University
+            Wait.WaitFor(500);
+            SetField(UniversityTextBox, university);
             CountryDropdownBtn.Click();
-
-            //select value from dropdown
             CountryDropdown.SelectByText(country);
-
-
-            //Select Title
             TitleDropdownBtn.Click();
-
-            //select value from dropdown
             TitleDropdown.SelectByText(title);
-
-            //Add Degree on Degree Text Box
-            DegreeTextBox.SendKeys(degree);
-
-            //Select graduation Year
+            SetField(DegreeTextBox, degree);
             YearDropdownBtn.Click();
-
-            //select value from dropdown
             YearDropdown.SelectByText(year);
-
-            //click on save button
             EducationAddBtn.Click();
-
-            //verify alert text for Education update
-            Assert.That(successMessageDiv.Displayed);
-
-
+            Wait.WaitFor(500);
+            Assert.IsTrue(IsDataVisibleInTableRow(educationTable, country), "Education is not added successfully");
         }
-        public void AddCertificationStep(String certification, String year, string from)
+
+        public void AddCertificationStep(string certification, string from, string year)
         {
-            //Click Certification Button
             certificationTabLink.Click();
-
-            //CertificationEditBtn.Click();
+            Wait.WaitFor(1000);
+            DeleteTableRowIfExists(certificationsTable);
             CertificationAddNewBtn.Click();
-
-            //click and clear text in Certification textbox
-            CertificateTextBox.Click();
-            CertificateTextBox.Clear();
-
-            //enter Certification value
-            CertificateTextBox.SendKeys(certification);
-
-            //click and clear text in From textbox
-            FromTextBox.Click();
-            FromTextBox.Clear();
-
-            //Enter certified from
-            FromTextBox.SendKeys(from);
-
+            Wait.WaitFor(500);
+            SetField(CertificateTextBox, certification);
+            SetField(FromTextBox, from);
             GraduatedYearDropdownBtn.Click();
-
-            //select value from dropdown
             GraduatedYearDropDown.SelectByText(year);
-
-            //click on save button
             CertificationAddBtn.Click();
+            Wait.WaitFor(500);
+            Assert.IsTrue(IsDataVisibleInTableRow(certificationsTable, certification), "Certification is not added successfully");
+        }
 
-            //verify alert text for Language update
-            Assert.That(successMessageDiv.Displayed);
+        public void VerifyProfileSection()
+        {
+            profileSectionLink.Click();
+            Wait.WaitFor(1000);
+            Assert.IsTrue(profileNameDiv.Displayed, "profileNameDiv is not visible");
+            Assert.IsTrue(profileDescDiv.Displayed, "profileDescDiv is not visible");
+            Assert.IsTrue(profileQualificationsDiv.Displayed, "profileQualificationsDiv is not visible");
         }
 
         private void DeleteTableRowIfExists(IWebElement table)
         {
             try
             {
-                IReadOnlyCollection<IWebElement> rows = table.FindElements(By.TagName("tr"));
+                IReadOnlyCollection<IWebElement> rows = table.FindElements(By.TagName("tbody"));
                 if (rows.Count > 0)
                 {
                     IWebElement deleteButton = null;
                     bool deleteButtonFound = false;
                     foreach (IWebElement row in rows)
                     {
-                        deleteButton = row.FindElement(By.XPath(".//td[@class='right aligned']/span[2]"));
+                        deleteButton = row.FindElement(By.CssSelector("td.right.aligned > span:nth-child(2)"));
                         if (deleteButton != null)
                         {
                             deleteButtonFound = true;
@@ -317,10 +254,29 @@ namespace MarsQA.Pages
                     Console.WriteLine("No rows found in the table.");
                 }
             }
-            catch (NoSuchElementException)
+            catch
             {
                 Console.WriteLine("Table or delete button not found.");
             }
+        }
+
+        private bool IsDataVisibleInTableRow(IWebElement table, string qualification)
+        {
+            IReadOnlyCollection<IWebElement> tableRows = table.FindElements(By.TagName("tbody"));
+
+            foreach (IWebElement row in tableRows)
+            {
+                IEnumerable<IWebElement> tableData = row.FindElements(By.TagName("td"));
+
+                foreach (IWebElement data in tableData)
+                {
+                    if (data.Text.Contains(qualification))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
 

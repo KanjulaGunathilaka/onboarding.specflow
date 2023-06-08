@@ -32,13 +32,9 @@ namespace MarsQA.Pages
         public void Login()
         {
             NavigateToUrl();
-            //Enter Url
             driver.FindElement(By.XPath("//A[@class='item'][text()='Sign In']")).Click();
-            //Enter Username
             driver.FindElement(By.XPath("(//INPUT[@type='text'])[2]")).SendKeys("");
-            //Enter password
             driver.FindElement(By.XPath("//INPUT[@type='password']")).SendKeys("");
-            //Click on Login Button
             driver.FindElement(By.XPath("//BUTTON[@class='fluid ui teal button'][text()='Login']")).Click();
         }
     }

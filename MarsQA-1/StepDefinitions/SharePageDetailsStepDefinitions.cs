@@ -41,57 +41,35 @@ namespace MarsQA.StepDefinitions
             sharePage.SelectCategoryStep(business, presentations);
         }
 
-
-
         [When(@"Seller enter ""([^""]*)"" and ""([^""]*)"" as tags")]
-        public void WhenSellerEnterAndAsTags(string limitedEdition, string qualityProducts)
+        public void WhenSellerEnterAndAsTags(string tag1, string tag2)
         {
-            sharePage.AddTags(limitedEdition, qualityProducts);
+            sharePage.AddTags(tag1, tag2);
         }
-
 
         [When(@"Seller select ""([^""]*)"" as Service type")]
-        public void WhenSellerSelectAsServiceType(String radioType)
+        public void WhenSellerSelectAsServiceType(string serviceType)
         {
-            sharePage.SelectServiceTypeStep(radioType);
+            sharePage.SelectServiceTypeStep(serviceType);
         }
-
-
-
 
         [When(@"Seller select ""([^""]*)"" as Location type")]
-        public void WhenSellerSelectAsLocationType(String locationType)
+        public void WhenSellerSelectAsLocationType(string locationType)
         {
-            sharePage.SelectLocationTypeStep( locationType);
+            sharePage.SelectLocationTypeStep(locationType);
         }
-
 
         [When(@"Seller select ""([^""]*)"" as start date and ""([^""]*)"" as end date")]
         public void WhenSellerSelectAsAvailableStartDateAndAsEndDate(string startDate, string endDate)
         {
-            sharePage.AvailableDaysstep(startDate);
+            sharePage.AvailableDaysStep(startDate, endDate);
         }
 
-        [When(@"Seller select ""([^""]*)"" ""([^""]*)"" as available start time and (.*) pm as end time")]
-        public void WhenSellerSelectAsAvailableStartTimeAndPmAsEndTime(string p0, string p1, Decimal p2)
-        {
-            
-        }
-
-
-
-        [When(@"Seller choose ""([^""]*)"" as  skill trade")]
+        [When(@"Seller choose ""([^""]*)"" as skill trade")]
         public void WhenSellerChooseAsSkillTrade(string tradeType)
         {
             sharePage.SelectSkillTradeStep(tradeType);
         }
-
-        [When(@"Seller add new tags ""([^""]*)"" and ""([^""]*)"" for skill exchange")]
-        public void WhenSellerAddNewTagsAndForSkillExchange(string businessExchange, string codingExchange)
-        {
-            
-        }
-
 
         [When(@"Seller upload ""([^""]*)"" work samples")]
         public void WhenSellerUploadWorkSamples(string p0)
@@ -112,8 +90,8 @@ namespace MarsQA.StepDefinitions
             sharePage.SaveSharePageStep();
         }
 
-        [Then(@"Seller is able to save share skill page succussfully")]
-        public void ThenSellerIsAbleToSaveShareSkillPageSuccussfully()
+        [Then(@"Seller is able to save share skill page successfully")]
+        public void ThenSellerIsAbleToSaveShareSkillPageSuccessfully()
         {
             throw new PendingStepException();
         }

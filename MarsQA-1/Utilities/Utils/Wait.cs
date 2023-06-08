@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 
 namespace MarsQA.Utils
 {
@@ -32,6 +33,10 @@ namespace MarsQA.Utils
             wait.Until(ExpectedConditions.ElementIsVisible((By)locator));
         }
 
+        public static void WaitFor(int milliseconds)
+        {
+            Thread.Sleep(milliseconds);
+        }
         private static By GetLocator(string locatorType, string locatorValue)
         {
             switch (locatorType.ToLower())
