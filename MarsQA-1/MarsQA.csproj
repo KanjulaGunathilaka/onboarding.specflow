@@ -522,6 +522,7 @@
     <None Include="SpecflowTests\Data\Data.xlsx" />
     <None Include="packages.config" />
     <None Include="SpecflowTests\Data\Mars.xlsx" />
+    <None Include="Test Cases\Mars Test Analyst- Onboard Task Test cases- K.R.K.S.Gunathilaka.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SpecflowTests\Bind_Steps\" />
