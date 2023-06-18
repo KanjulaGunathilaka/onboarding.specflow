@@ -233,7 +233,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Seller select \"Online\" as Location type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 45
- testRunner.And("Seller select \"10/06/2023\" as start date and \"30/06/2023\" as end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Seller select \"10/06/2024\" as start date and \"30/06/2024\" as end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 46
  testRunner.And("Seller choose \"Credit\" as skill trade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

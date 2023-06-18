@@ -107,6 +107,7 @@ namespace MarsQA.Pages
         {
             ScrollToElement(driver, nameSaveBtn);
             nameSaveBtn.Click();
+            Wait.WaitFor(1000);
         }
 
         public void VerifyNameStep()
@@ -145,6 +146,7 @@ namespace MarsQA.Pages
             descriptionTextArea.Click();
             SetField(descriptionTextArea, description);
             descriptionSaveBtn.Click();
+            Wait.WaitFor(5000);
         }
 
         public void AddLanguagesStep(string language, string level)
@@ -163,7 +165,7 @@ namespace MarsQA.Pages
         public void AddSkillsStep(string skill, string level)
         {
             skillsTabLink.Click();
-            Wait.WaitFor(1000);
+            Wait.WaitFor(500);
             DeleteTableRowIfExists(skillsTable);
             skillsAddNewBtn.Click();
             Wait.WaitFor(500);
@@ -191,7 +193,7 @@ namespace MarsQA.Pages
             YearDropdownBtn.Click();
             YearDropdown.SelectByText(year);
             EducationAddBtn.Click();
-            Wait.WaitFor(500);
+            Wait.WaitFor(1000);
             Assert.IsTrue(IsDataVisibleInTableRow(educationTable, country), "Education is not added successfully");
         }
 
@@ -207,14 +209,14 @@ namespace MarsQA.Pages
             GraduatedYearDropdownBtn.Click();
             GraduatedYearDropDown.SelectByText(year);
             CertificationAddBtn.Click();
-            Wait.WaitFor(500);
+            Wait.WaitFor(1000);
             Assert.IsTrue(IsDataVisibleInTableRow(certificationsTable, certification), "Certification is not added successfully");
         }
 
         public void VerifyProfileSection()
         {
             profileSectionLink.Click();
-            Wait.WaitFor(1000);
+            Wait.WaitFor(10000);
             Assert.IsTrue(profileNameDiv.Displayed, "profileNameDiv is not visible");
             Assert.IsTrue(profileDescDiv.Displayed, "profileDescDiv is not visible");
             Assert.IsTrue(profileQualificationsDiv.Displayed, "profileQualificationsDiv is not visible");

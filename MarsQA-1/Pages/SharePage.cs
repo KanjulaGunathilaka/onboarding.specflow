@@ -112,6 +112,7 @@ namespace MarsQA.Pages
             {
                 creditRadioBtn.Click();
                 SetField(creditTextBox, "5");
+                Wait.WaitFor(500);
             }
         }
 

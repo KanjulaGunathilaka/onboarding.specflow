@@ -42,7 +42,7 @@ Scenario: Seller Share Sellers Profile details
 	And Seller enter "LimitedEdition" and "QualityProducts" as tags
 	And Seller select "Hourly basis service" as Service type
 	And Seller select "Online" as Location type
-	And Seller select "10/06/2023" as start date and "30/06/2023" as end date
+	And Seller select "10/06/2024" as start date and "30/06/2024" as end date
 	And Seller choose "Credit" as skill trade
 	And Seller select "Active" services
 	And Seller click save button
